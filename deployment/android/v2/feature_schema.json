@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "featureCount": 31,
+  "availabilityMaskDimension": 31,
+  "modelInputDimension": 62,
+  "features": [
+    {
+      "name": "phishing_probability",
+      "group": "urlbert",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "URLBERT_PHISHING_BINARY_V1 softmax output",
+      "notes": "Selected probability version is recorded in metadata."
+    },
+    {
+      "name": "benign_probability",
+      "group": "urlbert",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "URLBERT_PHISHING_BINARY_V1 softmax output",
+      "notes": "Complement of the phishing probability."
+    },
+    {
+      "name": "known_malicious",
+      "group": "threat_intelligence",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "CONDITIONAL",
+      "source": "ThreatIntelligenceService merged status",
+      "notes": "1 only for a confirmed KNOWN_MALICIOUS match. UNKNOWN is never encoded as safe."
+    },
+    {
+      "name": "urlhaus_hit",
+      "group": "threat_intelligence",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "CONDITIONAL",
+      "source": "UrlHausProvider",
+      "notes": "Per-provider evidence flag."
+    },
+    {
+      "name": "threatfox_hit",
+      "group": "threat_intelligence",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "CONDITIONAL",
+      "source": "ThreatFoxProvider",
+      "notes": "Per-provider evidence flag."
+    },
+    {
+      "name": "url_length",
+      "group": "url_structure",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        4096.0
+      ],
+      "normalization": "zscore",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "hostname_length",
+      "group": "url_structure",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        253.0
+      ],
+      "normalization": "zscore",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "subdomain_count",
+      "group": "url_structure",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        32.0
+      ],
+      "normalization": "zscore",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "digit_ratio",
+      "group": "url_structure",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "special_character_ratio",
+      "group": "url_structure",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "hostname_entropy",
+      "group": "url_structure",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        8.0
+      ],
+      "normalization": "zscore",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "has_ip",
+      "group": "rules",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "has_punycode",
+      "group": "rules",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "has_at_symbol",
+      "group": "rules",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "uses_https",
+      "group": "rules",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "has_non_default_port",
+      "group": "rules",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "contains_login",
+      "group": "keywords",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "contains_verify",
+      "group": "keywords",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "contains_secure",
+      "group": "keywords",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "contains_account",
+      "group": "keywords",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "contains_password",
+      "group": "keywords",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "contains_payment",
+      "group": "keywords",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "contains_wallet",
+      "group": "keywords",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.features.extractor",
+      "notes": ""
+    },
+    {
+      "name": "brand_detected",
+      "group": "brand",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.intel.brand_engine",
+      "notes": "Catalog-based brand token detection; heuristic, not a guarantee."
+    },
+    {
+      "name": "brand_domain_mismatch",
+      "group": "brand",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.intel.brand_engine",
+      "notes": "Brand token on a non-official registrable domain."
+    },
+    {
+      "name": "brand_risk_score",
+      "group": "brand",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.intel.brand_engine",
+      "notes": "0 for the brand's own canonical domain; confusable matches score higher."
+    },
+    {
+      "name": "redirect_count",
+      "group": "redirect",
+      "dtype": "float",
+      "expectedRange": [
+        0.0,
+        32.0
+      ],
+      "normalization": "zscore",
+      "availability": "CONDITIONAL",
+      "source": "src.intel.redirect",
+      "notes": "Only available when a resolver observed the chain; NoOpRedirectResolver reports NOT_OBSERVED."
+    },
+    {
+      "name": "cross_domain_redirect",
+      "group": "redirect",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "CONDITIONAL",
+      "source": "src.intel.redirect",
+      "notes": "Only available when a resolver observed the chain; NoOpRedirectResolver reports NOT_OBSERVED."
+    },
+    {
+      "name": "shortener_detected",
+      "group": "redirect",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "ALWAYS",
+      "source": "src.intel.shortener_engine",
+      "notes": "Catalog-based shortener domain detection; reviews, never blocks alone."
+    },
+    {
+      "name": "blacklist_hit",
+      "group": "local",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "NOT_IMPLEMENTED",
+      "source": "not implemented",
+      "notes": "No approved on-device blacklist exists yet."
+    },
+    {
+      "name": "whitelist_hit",
+      "group": "local",
+      "dtype": "bool",
+      "expectedRange": [
+        0.0,
+        1.0
+      ],
+      "normalization": "identity",
+      "availability": "NOT_IMPLEMENTED",
+      "source": "not implemented",
+      "notes": "No approved on-device whitelist exists yet."
+    }
+  ],
+  "missingnessContract": "Values and availability are separate vectors. A feature with availability 0 must be ignored by the model; its value carries no meaning and is never interpreted as safe."
+}

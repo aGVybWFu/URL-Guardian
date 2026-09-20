@@ -1,0 +1,168 @@
+{
+  "metadataSchemaVersion": 3,
+  "experimentType": "OFFICIAL_EXPERIMENT",
+  "experimentId": "LightGBM_DOMAIN_ONLY_V2",
+  "modelName": "url_guardian_lightgbm",
+  "modelVersion": "0.2.0",
+  "datasetVersion": "dataset-v1.2.0",
+  "datasetRegime": "artifact_controlled",
+  "datasetView": "DOMAIN_ONLY",
+  "trainedAt": "2026-09-20T04:12:52+00:00",
+  "randomSeed": 42,
+  "featureSchemaVersion": 1,
+  "featureNames": [
+    "url_length",
+    "hostname_length",
+    "registrable_domain_length",
+    "path_length",
+    "query_length",
+    "subdomain_count",
+    "dot_count",
+    "hyphen_count",
+    "underscore_count",
+    "slash_count",
+    "digit_count",
+    "letter_count",
+    "special_character_count",
+    "percent_encoded_count",
+    "parameter_count",
+    "is_https",
+    "is_http",
+    "has_ip_address",
+    "has_ipv4",
+    "has_ipv6",
+    "has_punycode",
+    "has_at_symbol",
+    "has_non_default_port",
+    "has_fragment",
+    "contains_login",
+    "contains_signin",
+    "contains_verify",
+    "contains_verification",
+    "contains_secure",
+    "contains_account",
+    "contains_password",
+    "contains_update",
+    "contains_payment",
+    "contains_wallet",
+    "contains_bank",
+    "contains_confirm",
+    "contains_auth",
+    "contains_oauth",
+    "url_entropy",
+    "hostname_entropy",
+    "digit_ratio",
+    "special_character_ratio",
+    "hostname_to_url_length_ratio"
+  ],
+  "excludedFeatures": [],
+  "labelMapping": {
+    "BENIGN": 0,
+    "PHISHING": 1,
+    "MALWARE": 2
+  },
+  "trainCount": 31897,
+  "validationCount": 6835,
+  "testCount": 6836,
+  "classWeight": "balanced",
+  "testManifestSHA256": "ca31fcd2a1be7828fb0f5afff91b55b9219d2ec5f0ff621d1e5ed12c8c2c0322",
+  "testSetSHA256": "ceeee94abfd23fc13d0752dead1b15d436b0301ae35f83bf1f4e8e69c52103a5",
+  "modelSHA256": "23e8b032b2fd16373a87794117c2d0961d35e9710171c8236d02c5fef8205648",
+  "probabilityStatus": "UNCALIBRATED PROBABILITY",
+  "libraryVersions": {
+    "python": "3.11.9",
+    "lightgbm": "4.7.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1"
+  },
+  "testMetrics": {
+    "accuracy": 0.6600351082504389,
+    "macro_precision": 0.6953922852873253,
+    "macro_recall": 0.6244842086851791,
+    "macro_f1": 0.6495257947185363,
+    "weighted_f1": 0.6587801784598711,
+    "phishing_recall": 0.7158977763026884,
+    "malware_recall": 0.5125448028673835,
+    "benign_false_positive_rate": 0.3549899531145345,
+    "malicious_false_negative_rate": 0.25272727272727274,
+    "per_class": {
+      "BENIGN": {
+        "precision": 0.6643670231114177,
+        "recall": 0.6450100468854655,
+        "f1-score": 0.6545454545454545,
+        "support": 2986.0
+      },
+      "PHISHING": {
+        "precision": 0.6360955470362725,
+        "recall": 0.7158977763026884,
+        "f1-score": 0.6736414740787008,
+        "support": 3013.0
+      },
+      "MALWARE": {
+        "precision": 0.7857142857142857,
+        "recall": 0.5125448028673835,
+        "f1-score": 0.6203904555314533,
+        "support": 837.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1926,
+        1000,
+        60
+      ],
+      [
+        799,
+        2157,
+        57
+      ],
+      [
+        174,
+        234,
+        429
+      ]
+    ],
+    "auroc_ovr_macro": 0.7850475711593589,
+    "auprc_ovr_macro": 0.7017566878082994,
+    "datasetVersion": "dataset-v1.2.0",
+    "regime": "artifact_controlled",
+    "experimentId": "LightGBM_DOMAIN_ONLY_V2",
+    "excludedFeatures": [],
+    "featureCount": 43,
+    "subgroups": {
+      "ip_host": {
+        "sampleCount": 406,
+        "accuracy": 1.0,
+        "macroF1": 0.3333333333333333,
+        "macroPrecision": 0.3333333333333333,
+        "macroRecall": 0.3333333333333333,
+        "malwareRecall": 1.0,
+        "malwareSupport": 406,
+        "phishingRecall": 0.0,
+        "benignFpr": 0.0,
+        "maliciousFnr": 0.0
+      },
+      "non_ip_host": {
+        "sampleCount": 6430,
+        "accuracy": 0.6385692068429238,
+        "macroF1": 0.46958244964646395,
+        "macroPrecision": 0.4882494281444682,
+        "macroRecall": 0.47142403077656164,
+        "malwareRecall": 0.05336426914153132,
+        "malwareSupport": 431,
+        "phishingRecall": 0.7158977763026884,
+        "benignFpr": 0.3549899531145345,
+        "maliciousFnr": 0.28252032520325204
+      }
+    },
+    "testManifestSHA256": "ca31fcd2a1be7828fb0f5afff91b55b9219d2ec5f0ff621d1e5ed12c8c2c0322",
+    "testSetSHA256": "ceeee94abfd23fc13d0752dead1b15d436b0301ae35f83bf1f4e8e69c52103a5",
+    "probabilityStatus": "UNCALIBRATED PROBABILITY",
+    "labelNames": [
+      "BENIGN",
+      "PHISHING",
+      "MALWARE"
+    ]
+  }
+}

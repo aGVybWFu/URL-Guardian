@@ -1,0 +1,66 @@
+# Phase 2.5 URLBERT V2 configuration.
+#
+# Reuses the dataset-v1.2.0 artifact-controlled DOMAIN_ONLY regime and its sealed
+# Test Manifest. The base model is unchanged so that the comparison isolates the
+# dataset change rather than a model swap.
+urlbert:
+  experiment_id: "URLBERT_DOMAIN_ONLY_V2"
+  model_name: "url_guardian_urlbert"
+  model_version: "0.5.0"
+  comparison_lightgbm_model: "LightGBM_DOMAIN_ONLY_V2"
+  comparison_urlbert_model: "URLBERT_DOMAIN_ONLY_V2"
+  base_model: "CrabInHoney/urlbert-tiny-v6"
+  base_model_revision: "020744435b3be870dabb2bba0b41237bea69b84b"
+  dataset_version: "dataset-v1.2.0"
+  dataset_view: "domain_only"
+  dataset_metadata: "data/processed/v1.2.0/dataset_metadata.json"
+  test_manifest: "data/splits/v1.2.0/test_manifest_v1.2.0.json"
+  # The v1.2.0 manifest is keyed by sampling regime, not by dataset view.
+  test_manifest_view: "artifact_controlled"
+  expected_test_manifest_sha256: "ca31fcd2a1be7828fb0f5afff91b55b9219d2ec5f0ff621d1e5ed12c8c2c0322"
+  expected_test_sha256: "ceeee94abfd23fc13d0752dead1b15d436b0301ae35f83bf1f4e8e69c52103a5"
+  splits_dir: "data/splits/v1.2.0/artifact_controlled"
+  text_column: "registrable_domain"
+  label_mapping:
+    BENIGN: 0
+    PHISHING: 1
+    MALWARE: 2
+  pooling: "cls_mean"
+  head_hidden_size: 256
+  head_dropout: 0.1
+  max_length: 32
+  training:
+    seed: 42
+    epochs: 5
+    batch_size: 0
+    batch_size_candidates: [1024, 512, 256, 128, 64, 32, 16]
+    minimum_steps_per_epoch: 40
+    learning_rate: 0.00002
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    scheduler: "linear"
+    optimizer: "adamw"
+    max_grad_norm: 1.0
+    early_stopping_metric: "macro_f1"
+    early_stopping_patience: 2
+    mixed_precision: "auto"
+    gradient_accumulation_steps: 1
+    num_workers: 0
+  paths:
+    checkpoint_dir: "models/urlbert_v2/artifact_controlled/v1"
+    metrics: "reports/metrics/v1.2.0/urlbert_artifact_controlled"
+    figures: "reports/figures/v1.2.0/urlbert_artifact_controlled"
+    error_analysis: "reports/error_analysis/v1.2.0/urlbert"
+  calibration:
+    # Temperature scaling is fitted on Validation only and applied to Test once.
+    method: "temperature_scaling"
+    fit_split: "validation"
+    apply_split: "test"
+  thresholds:
+    # Malicious score = P(PHISHING) + P(MALWARE); thresholds come from Validation only.
+    fit_split: "validation"
+    grid: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.7, 0.8, 0.9]
+  benchmark:
+    warmup_iterations: 20
+    timed_iterations: 200
+    hardware_label: "desktop-research-benchmark"

@@ -1,0 +1,687 @@
+{
+  "corpusVersion": "adversarial-url-corpus-v1",
+  "generatedAt": "2026-09-20",
+  "urlCaseCount": 46,
+  "brandCaseCount": 12,
+  "shortenerCaseCount": 8,
+  "unsupportedSchemeCount": 7,
+  "urlCases": [
+    {
+      "id": "nested_subdomains",
+      "category": "structure",
+      "input": "https://a.b.c.d.example.com/path?x=1",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://a.b.c.d.example.com/path?x=1",
+      "hostname": "a.b.c.d.example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "brand_token_path_only",
+      "category": "brand",
+      "input": "https://example.com/paypal/login",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/paypal/login",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "brand_token_query_only",
+      "category": "brand",
+      "input": "https://example.com/?next=paypal",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/?next=paypal",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "brand_token_fragment_only",
+      "category": "brand",
+      "input": "https://example.com/page#paypal",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/page#paypal",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "official_domain_deceptive_path",
+      "category": "brand",
+      "input": "https://www.paypal.com/verify-account/login",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://www.paypal.com/verify-account/login",
+      "hostname": "www.paypal.com",
+      "registrableDomain": "paypal.com"
+    },
+    {
+      "id": "attacker_official_subdomain_trick",
+      "category": "brand",
+      "input": "https://paypal.com.attacker.example/login",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://paypal.com.attacker.example/login",
+      "hostname": "paypal.com.attacker.example",
+      "registrableDomain": "paypal.com.attacker.example"
+    },
+    {
+      "id": "punycode_host",
+      "category": "encoding",
+      "input": "https://xn--ypal-43d9g.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://xn--ypal-43d9g.com/",
+      "hostname": "xn--ypal-43d9g.com",
+      "registrableDomain": "xn--ypal-43d9g.com"
+    },
+    {
+      "id": "idn_unicode_host",
+      "category": "encoding",
+      "input": "https://раypal.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://xn--ypal-43d9g.com/",
+      "hostname": "xn--ypal-43d9g.com",
+      "registrableDomain": "xn--ypal-43d9g.com"
+    },
+    {
+      "id": "unicode_homoglyph_host",
+      "category": "encoding",
+      "input": "https://gοοgle.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://xn--ggle-0nda.com/",
+      "hostname": "xn--ggle-0nda.com",
+      "registrableDomain": "xn--ggle-0nda.com"
+    },
+    {
+      "id": "punycode_greek_homoglyph",
+      "category": "encoding",
+      "input": "https://xn--ggle-0nda.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://xn--ggle-0nda.com/",
+      "hostname": "xn--ggle-0nda.com",
+      "registrableDomain": "xn--ggle-0nda.com"
+    },
+    {
+      "id": "very_long_hostname",
+      "category": "structure",
+      "input": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.example/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.example/",
+      "hostname": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.example",
+      "registrableDomain": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.example"
+    },
+    {
+      "id": "maximum_label_length",
+      "category": "structure",
+      "input": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com/",
+      "hostname": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "overlong_label",
+      "category": "structure",
+      "input": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "URL cannot be parsed"
+    },
+    {
+      "id": "multiple_hyphens",
+      "category": "structure",
+      "input": "https://a--b---c.example.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://a--b---c.example.com/",
+      "hostname": "a--b---c.example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "digit_substitution_host",
+      "category": "encoding",
+      "input": "https://paypa1.example.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://paypa1.example.com/",
+      "hostname": "paypa1.example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "userinfo_at_syntax",
+      "category": "structure",
+      "input": "https://user:secret@example.com/path",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://user:secret@example.com/path",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "ipv4_host",
+      "category": "host",
+      "input": "http://192.0.2.10/test",
+      "schemeOutcome": "HTTP",
+      "scheme": "http",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "http://192.0.2.10/test",
+      "hostname": "192.0.2.10",
+      "registrableDomain": "192.0.2.10"
+    },
+    {
+      "id": "ipv6_host",
+      "category": "host",
+      "input": "https://[2001:db8::1]:8443/demo",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://[2001:db8::1]:8443/demo",
+      "hostname": "2001:db8::1",
+      "registrableDomain": "2001:db8::1"
+    },
+    {
+      "id": "encoded_characters",
+      "category": "encoding",
+      "input": "https://example.com/%2Fpath%3Fq%3D1",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/%2Fpath%3Fq%3D1",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "double_encoding",
+      "category": "encoding",
+      "input": "https://example.com/%252Fadmin",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/%252Fadmin",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "mixed_case",
+      "category": "normalization",
+      "input": "HTTPS://EXAMPLE.COM/MiXeD",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/MiXeD",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "trailing_dot",
+      "category": "normalization",
+      "input": "https://example.com./",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "default_port",
+      "category": "port",
+      "input": "http://example.com:80/",
+      "schemeOutcome": "HTTP",
+      "scheme": "http",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "http://example.com/",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "non_default_port",
+      "category": "port",
+      "input": "https://example.com:8443/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com:8443/",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "invalid_port",
+      "category": "port",
+      "input": "https://example.com:99999/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "URL cannot be parsed"
+    },
+    {
+      "id": "shortener_domain",
+      "category": "shortener",
+      "input": "https://bit.ly/abc123",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://bit.ly/abc123",
+      "hostname": "bit.ly",
+      "registrableDomain": "bit.ly"
+    },
+    {
+      "id": "shortener_lookalike",
+      "category": "shortener",
+      "input": "https://bit.ly.example.com/abc",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://bit.ly.example.com/abc",
+      "hostname": "bit.ly.example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "shortener_token_in_path",
+      "category": "shortener",
+      "input": "https://example.com/bit.ly/abc",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/bit.ly/abc",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "localhost_like",
+      "category": "host",
+      "input": "https://localhost.example/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://localhost.example/",
+      "hostname": "localhost.example",
+      "registrableDomain": "localhost.example"
+    },
+    {
+      "id": "single_label_host",
+      "category": "host",
+      "input": "https://localhost/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://localhost/",
+      "hostname": "localhost",
+      "registrableDomain": "localhost"
+    },
+    {
+      "id": "malformed_empty",
+      "category": "malformed",
+      "input": "",
+      "schemeOutcome": "MALFORMED",
+      "scheme": null,
+      "outcome": "MALFORMED"
+    },
+    {
+      "id": "malformed_missing_host",
+      "category": "malformed",
+      "input": "https:///path",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "URL cannot be parsed"
+    },
+    {
+      "id": "malformed_space_in_host",
+      "category": "malformed",
+      "input": "https://exa mple.com/",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "URL cannot be parsed"
+    },
+    {
+      "id": "malformed_bad_percent",
+      "category": "malformed",
+      "input": "https://example.com/%zz",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "Malformed percent encoding"
+    },
+    {
+      "id": "malformed_control_char",
+      "category": "malformed",
+      "input": "https://example.com/\u0000",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "URL contains control characters"
+    },
+    {
+      "id": "malformed_too_long",
+      "category": "malformed",
+      "input": "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "URL is empty or too long"
+    },
+    {
+      "id": "scheme_relative",
+      "category": "scheme",
+      "input": "//example.com/path",
+      "schemeOutcome": "IMPLIED_HTTPS",
+      "scheme": null,
+      "outcome": "MALFORMED",
+      "detail": "URL cannot be parsed"
+    },
+    {
+      "id": "scheme_javascript",
+      "category": "scheme",
+      "input": "javascript:alert(1)",
+      "schemeOutcome": "UNSUPPORTED_SCHEME",
+      "scheme": "javascript",
+      "outcome": "UNSUPPORTED_SCHEME",
+      "detail": "Only HTTP and HTTPS URLs are accepted"
+    },
+    {
+      "id": "scheme_file",
+      "category": "scheme",
+      "input": "file:///etc/passwd",
+      "schemeOutcome": "UNSUPPORTED_SCHEME",
+      "scheme": "file",
+      "outcome": "UNSUPPORTED_SCHEME",
+      "detail": "Only HTTP and HTTPS URLs are accepted"
+    },
+    {
+      "id": "scheme_content",
+      "category": "scheme",
+      "input": "content://media/external/images/1",
+      "schemeOutcome": "UNSUPPORTED_SCHEME",
+      "scheme": "content",
+      "outcome": "UNSUPPORTED_SCHEME",
+      "detail": "Only HTTP and HTTPS URLs are accepted"
+    },
+    {
+      "id": "scheme_intent",
+      "category": "scheme",
+      "input": "intent://scan/#Intent;scheme=zxing;end",
+      "schemeOutcome": "UNSUPPORTED_SCHEME",
+      "scheme": "intent",
+      "outcome": "UNSUPPORTED_SCHEME",
+      "detail": "Only HTTP and HTTPS URLs are accepted"
+    },
+    {
+      "id": "scheme_data",
+      "category": "scheme",
+      "input": "data:text/html,<script>alert(1)</script>",
+      "schemeOutcome": "UNSUPPORTED_SCHEME",
+      "scheme": "data",
+      "outcome": "UNSUPPORTED_SCHEME",
+      "detail": "Only HTTP and HTTPS URLs are accepted"
+    },
+    {
+      "id": "scheme_ftp",
+      "category": "scheme",
+      "input": "ftp://example.com/file",
+      "schemeOutcome": "UNSUPPORTED_SCHEME",
+      "scheme": "ftp",
+      "outcome": "UNSUPPORTED_SCHEME",
+      "detail": "Only HTTP and HTTPS URLs are accepted"
+    },
+    {
+      "id": "scheme_ws",
+      "category": "scheme",
+      "input": "ws://example.com/socket",
+      "schemeOutcome": "UNSUPPORTED_SCHEME",
+      "scheme": "ws",
+      "outcome": "UNSUPPORTED_SCHEME",
+      "detail": "Only HTTP and HTTPS URLs are accepted"
+    },
+    {
+      "id": "crlf_percent_encoded",
+      "category": "injection",
+      "input": "https://example.com/%0d%0aSet-Cookie:x",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "ACCEPTED",
+      "normalizedUrl": "https://example.com/%0D%0ASet-Cookie:x",
+      "hostname": "example.com",
+      "registrableDomain": "example.com"
+    },
+    {
+      "id": "crlf_raw",
+      "category": "injection",
+      "input": "https://example.com/\r\nSet-Cookie:x",
+      "schemeOutcome": "HTTPS",
+      "scheme": "https",
+      "outcome": "MALFORMED",
+      "detail": "URL contains control characters"
+    }
+  ],
+  "brandCases": [
+    {
+      "input": "https://google.com.attacker.example/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.85,
+      "expectedBrands": [
+        {
+          "brandId": "google",
+          "location": "registrable_domain",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://accounts.google.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": true,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.0,
+      "expectedBrands": [
+        {
+          "brandId": "google",
+          "location": "registrable_domain",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://google-login.example/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.85,
+      "expectedBrands": [
+        {
+          "brandId": "google",
+          "location": "registrable_domain",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://google.example.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.7,
+      "expectedBrands": [
+        {
+          "brandId": "google",
+          "location": "subdomain",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://apple.com.attacker.example/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.85,
+      "expectedBrands": [
+        {
+          "brandId": "apple",
+          "location": "registrable_domain",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://paypa1.example/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.95,
+      "expectedBrands": [
+        {
+          "brandId": "paypal",
+          "location": "registrable_domain",
+          "confusable": true
+        }
+      ]
+    },
+    {
+      "input": "https://micros0ft.example/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.95,
+      "expectedBrands": [
+        {
+          "brandId": "microsoft",
+          "location": "registrable_domain",
+          "confusable": true
+        }
+      ]
+    },
+    {
+      "input": "https://gοοgle.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.95,
+      "expectedBrands": [
+        {
+          "brandId": "google",
+          "location": "registrable_domain",
+          "confusable": true
+        }
+      ]
+    },
+    {
+      "input": "https://paypal.com.evil.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.7,
+      "expectedBrands": [
+        {
+          "brandId": "paypal",
+          "location": "subdomain",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://example.com/paypal",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.35,
+      "expectedBrands": [
+        {
+          "brandId": "paypal",
+          "location": "path",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://example.com/?q=paypal",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.35,
+      "expectedBrands": [
+        {
+          "brandId": "paypal",
+          "location": "path",
+          "confusable": false
+        }
+      ]
+    },
+    {
+      "input": "https://example.com/page#paypal",
+      "expectedDetected": false,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.0,
+      "expectedBrands": []
+    }
+  ],
+  "shortenerCases": [
+    {
+      "input": "https://bit.ly/abc",
+      "expectedDetected": true,
+      "expectedDomain": "bit.ly"
+    },
+    {
+      "input": "https://go.bit.ly/xyz",
+      "expectedDetected": true,
+      "expectedDomain": "bit.ly"
+    },
+    {
+      "input": "https://sub.t.co/xyz",
+      "expectedDetected": true,
+      "expectedDomain": "t.co"
+    },
+    {
+      "input": "https://fake-shortener.example/",
+      "expectedDetected": false,
+      "expectedDomain": null
+    },
+    {
+      "input": "https://bit.ly.attacker.example/abc",
+      "expectedDetected": false,
+      "expectedDomain": null
+    },
+    {
+      "input": "https://bit-ly.example/abc",
+      "expectedDetected": false,
+      "expectedDomain": null
+    },
+    {
+      "input": "https://example.com/bit.ly/abc",
+      "expectedDetected": false,
+      "expectedDomain": null
+    },
+    {
+      "input": "https://youtu.be/abc",
+      "expectedDetected": false,
+      "expectedDomain": null
+    }
+  ]
+}

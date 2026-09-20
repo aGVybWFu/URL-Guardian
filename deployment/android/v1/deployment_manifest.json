@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "deploymentVersion": "android-v1",
+  "appVersion": "0.8.0",
+  "app": {
+    "applicationId": "org.urlguardian.app",
+    "versionName": "0.8.0",
+    "minSdk": 26,
+    "targetSdk": 35,
+    "compileSdk": 35,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "runtime": "onnxruntime-android:1.30.0 CPU",
+    "defaultDecisionEngine": "DecisionPolicyV1"
+  },
+  "model": {
+    "name": "url_guardian_urlbert_binary",
+    "experimentId": "URLBERT_PHISHING_BINARY_V1",
+    "version": "0.6.0",
+    "baseModel": "CrabInHoney/urlbert-tiny-v6",
+    "revision": "020744435b3be870dabb2bba0b41237bea69b84b",
+    "checkpointSHA256": "bcbe3857436c2140fdbc3a79f128c78e38151e68efe911170ffea4e8cea3f212",
+    "onnxSHA256": "f81a14452e3e1e90940d734796b86259dd54b52f85c08dc5e64dac05eb8b2ebb",
+    "maxLength": 32,
+    "labels": {
+      "BENIGN": 0,
+      "PHISHING": 1
+    }
+  },
+  "tokenizer": {
+    "class": "TokenizersBackend",
+    "vocabularySize": 8192,
+    "sha256": "bd2cfa05429338b17dd1907899ea01f8e62f67f04a86b5ccc3c199e648c61ba9"
+  },
+  "threatIntelligence": {
+    "snapshotFileSHA256": "c1007b9b9c8e2f4b7ead01822a2c297aead232c3534fbd68d6fb5f52d53d70fe",
+    "indicatorCount": 7833,
+    "assetSHA256": "69b2955abe8a661fe650c694c41402cc400e472408a899008ceb6ad8057195a8",
+    "providers": [
+      {
+        "provider": "URLHAUS",
+        "snapshotId": "",
+        "sourceVersion": null,
+        "file": "urlhaus/recent.csv",
+        "sha256": "be7a0fea31cde92708c956b5c7d81da99448c7b35b38da9b741678df0d143534",
+        "recordCount": 12757
+      },
+      {
+        "provider": "THREATFOX",
+        "snapshotId": "",
+        "sourceVersion": "get_iocs_days_7",
+        "file": "threatfox/threatfox_iocs.json",
+        "sha256": "8a3abb1f60c12f07f43b7094ca41087413f772bdd07f9dcb42202aaf11e989b5",
+        "recordCount": 2642
+      }
+    ]
+  },
+  "policy": {
+    "policyVersion": "DecisionPolicyV1",
+    "costVersion": "DecisionCostV1",
+    "reviewAt": 0.35,
+    "blockAt": 0.85,
+    "probabilityVersion": "uncalibrated",
+    "knownMaliciousGuardrail": "always_block",
+    "ugdmEnabled": false
+  },
+  "ugdm": {
+    "enabled": false,
+    "status": "experimental_only",
+    "version": "0.7.0"
+  },
+  "schemas": {
+    "feature": 1,
+    "output": 1
+  },
+  "publicSuffixCount": 7315,
+  "goldenFixtureCount": 65,
+  "parity": {
+    "fixtureCount": 65,
+    "logitMaxAbsoluteError": 1.0132789611816406e-06,
+    "logitMeanAbsoluteError": 4.772956572196563e-07,
+    "probabilityMaxAbsoluteError": 4.172325134277344e-07,
+    "probabilityMeanAbsoluteError": 1.97096511556083e-07,
+    "classAgreement": 1.0,
+    "requiredClassAgreement": 1.0,
+    "passed": true,
+    "providers": [
+      "CPUExecutionProvider"
+    ]
+  },
+  "assets": {
+    "urlbert_binary.onnx": "f81a14452e3e1e90940d734796b86259dd54b52f85c08dc5e64dac05eb8b2ebb",
+    "tokenizer.json": "bd2cfa05429338b17dd1907899ea01f8e62f67f04a86b5ccc3c199e648c61ba9",
+    "public_suffixes.txt": "c174d4b7e86611a69a6c05c27090fc709d4ce02da1a3dba11933932c16f07cc5",
+    "threat_intel_sha256.txt": "69b2955abe8a661fe650c694c41402cc400e472408a899008ceb6ad8057195a8",
+    "golden_set.json": "9946253aab3f5d02316bb655cade6635ff42876c1eaf8239fb9f986bbf622cdd",
+    "parity_report.json": "da2f9b66f351b4f349001ef93ac1431f743f3f967b7bedefaa277b689e708f8c",
+    "feature_schema.json": "1d4d116aa66f69b4149654f51a57c2afe5f631bfb65649ff474a360534041f03",
+    "output_schema.json": "e055beec9da2e47af542adc13296303e9964afcb8bccbf77cf62e3fe0e007703",
+    "decision_policy.json": "8134846fa789b4254114f10932c3193a65e0629af8b693158cd9f94a1273be10"
+  }
+}

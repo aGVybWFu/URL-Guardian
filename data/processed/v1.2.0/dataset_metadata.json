@@ -1,0 +1,411 @@
+{
+  "metadataSchemaVersion": 3,
+  "datasetVersion": "dataset-v1.2.0",
+  "status": "OFFICIAL_SOURCE_SET",
+  "buildDate": "2026-09-20T04:20:52+00:00",
+  "primaryRegime": "artifact_controlled",
+  "regimes": [
+    "natural",
+    "artifact_controlled"
+  ],
+  "rawClassDistribution": {
+    "BENIGN": 1000007,
+    "MALWARE": 15398,
+    "PHISHING": 133274
+  },
+  "rawSourceDistribution": {
+    "cert_polska": 132974,
+    "commoncrawl_tranco_candidate": 7,
+    "openphish": 300,
+    "threatfox": 2642,
+    "tranco": 1000000,
+    "urlhaus": 12756
+  },
+  "selectedRawClassDistribution": {
+    "BENIGN": 40007,
+    "MALWARE": 15398,
+    "PHISHING": 40300
+  },
+  "selectedRawSourceDistribution": {
+    "cert_polska": 40000,
+    "commoncrawl_tranco_candidate": 7,
+    "openphish": 300,
+    "threatfox": 2642,
+    "tranco": 40000,
+    "urlhaus": 12756
+  },
+  "preselection": {
+    "method": "fixed_seed_source_cap",
+    "seed": 42,
+    "capForLargeDomainSources": 40000,
+    "cappedSources": [
+      "cert_polska",
+      "tranco"
+    ]
+  },
+  "classDistribution": {
+    "BENIGN": 40007,
+    "MALWARE": 15398,
+    "PHISHING": 40300
+  },
+  "sourceDistribution": {
+    "cert_polska": 40000,
+    "commoncrawl_tranco_candidate": 7,
+    "openphish": 300,
+    "threatfox": 2642,
+    "tranco": 40000,
+    "urlhaus": 12756
+  },
+  "uniqueUrlCount": 95705,
+  "numberOfUniqueDomains": 83292,
+  "numberOfRows": 95705,
+  "cleaningStats": {
+    "raw_rows": 95706,
+    "removed_empty": 1,
+    "removed_invalid_label": 0,
+    "removed_exact_duplicates": 0,
+    "removed_invalid_urls": 0,
+    "removed_normalized_duplicates": 0,
+    "removed_conflicts": 0,
+    "remaining_rows": 95705,
+    "class_distribution": {
+      "BENIGN": 40007,
+      "MALWARE": 15398,
+      "PHISHING": 40300
+    }
+  },
+  "numberOfDomainLabelConflicts": 23,
+  "malwareIpArtifactAudit": {
+    "stages": [
+      {
+        "stage": "raw_union",
+        "rows": 15398,
+        "hostTypeCounts": {
+          "DOMAIN": 3968,
+          "IPV4": 11430,
+          "IPV6": 0
+        },
+        "hostTypeShare": {
+          "DOMAIN": 0.25769580464995456,
+          "IPV4": 0.7423041953500454,
+          "IPV6": 0.0
+        },
+        "uniqueHostsByType": {
+          "DOMAIN": 3154,
+          "IPV4": 4678,
+          "IPV6": 0
+        }
+      },
+      {
+        "stage": "after_cleaning",
+        "rows": 15398,
+        "hostTypeCounts": {
+          "DOMAIN": 3968,
+          "IPV4": 11430,
+          "IPV6": 0
+        },
+        "hostTypeShare": {
+          "DOMAIN": 0.25769580464995456,
+          "IPV4": 0.7423041953500454,
+          "IPV6": 0.0
+        },
+        "uniqueHostsByType": {
+          "DOMAIN": 2801,
+          "IPV4": 4678,
+          "IPV6": 0
+        }
+      },
+      {
+        "stage": "after_domain_only_dedup",
+        "rows": 7462,
+        "hostTypeCounts": {
+          "DOMAIN": 2784,
+          "IPV4": 4678,
+          "IPV6": 0
+        },
+        "hostTypeShare": {
+          "DOMAIN": 0.3730903243098365,
+          "IPV4": 0.6269096756901635,
+          "IPV6": 0.0
+        },
+        "uniqueHostsByType": {
+          "DOMAIN": 2784,
+          "IPV4": 4678,
+          "IPV6": 0
+        }
+      }
+    ],
+    "conclusion": "The official URLhaus recent export is itself IP-dominated. Registrable-domain deduplication then removes a larger share of domain-hosted rows than of IP-hosted rows, which further increases the IP share inside DOMAIN_ONLY."
+  },
+  "regimeDetails": {
+    "natural": {
+      "samplingRationale": {
+        "regime": "natural",
+        "targetPerClass": 20000,
+        "seed": 42,
+        "syntheticRowsCreated": 0,
+        "duplicateRowsCreated": 0,
+        "method": "fixed_seed_per_class_sample_of_the_cleaned_view",
+        "malwareHostTypeCounts": {
+          "DOMAIN": 2784,
+          "IPV4": 4678,
+          "IPV6": 0
+        },
+        "malwareHostTypeShare": {
+          "DOMAIN": 0.3730903243098365,
+          "IPV4": 0.6269096756901635,
+          "IPV6": 0.0
+        },
+        "note": "Source host-type distribution is preserved without intervention."
+      },
+      "viewDistribution": {
+        "BENIGN": 20000,
+        "MALWARE": 7462,
+        "PHISHING": 20000
+      },
+      "hostTypeCounts": {
+        "DOMAIN": 42784,
+        "IPV4": 4678,
+        "IPV6": 0
+      },
+      "hostTypeShare": {
+        "DOMAIN": 0.9014369390249042,
+        "IPV4": 0.09856306097509587,
+        "IPV6": 0.0
+      },
+      "splits": {
+        "trainSize": 33223,
+        "validationSize": 7119,
+        "testSize": 7120,
+        "trainDistribution": {
+          "BENIGN": 13997,
+          "MALWARE": 5221,
+          "PHISHING": 14005
+        },
+        "validationDistribution": {
+          "BENIGN": 3009,
+          "MALWARE": 1109,
+          "PHISHING": 3001
+        },
+        "testDistribution": {
+          "BENIGN": 2994,
+          "MALWARE": 1132,
+          "PHISHING": 2994
+        },
+        "uniqueDomains": {
+          "train": 33223,
+          "validation": 7119,
+          "test": 7120
+        },
+        "domainLeakage": 0,
+        "testHostTypeCounts": {
+          "DOMAIN": 6383,
+          "IPV4": 737,
+          "IPV6": 0
+        },
+        "testHostTypeShare": {
+          "DOMAIN": 0.8964887640449438,
+          "IPV4": 0.10351123595505618,
+          "IPV6": 0.0
+        }
+      }
+    },
+    "artifact_controlled": {
+      "samplingRationale": {
+        "regime": "artifact_controlled",
+        "targetPerClass": 20000,
+        "seed": 42,
+        "syntheticRowsCreated": 0,
+        "duplicateRowsCreated": 0,
+        "method": "keep_all_domain_hosts_and_cap_ip_hosts_at_domain_count",
+        "malwareControl": {
+          "label": "MALWARE",
+          "method": "keep_all_domain_hosts_and_cap_ip_hosts_at_domain_count",
+          "domainHostRecords": 2784,
+          "ipHostRecordsAvailable": 4678,
+          "ipHostRecordsKept": 2784,
+          "ipHostRecordsDropped": 1894,
+          "resultingIpShare": 0.5,
+          "syntheticRowsCreated": 0,
+          "duplicateRowsCreated": 0,
+          "note": "IP-hosted malware is a real threat class and is retained; it is only downsampled so that host type is not a near-perfect predictor of MALWARE. Dropped IP rows remain in the natural dataset."
+        },
+        "malwareHostTypeCounts": {
+          "DOMAIN": 2784,
+          "IPV4": 2784,
+          "IPV6": 0
+        },
+        "malwareHostTypeShare": {
+          "DOMAIN": 0.5,
+          "IPV4": 0.5,
+          "IPV6": 0.0
+        },
+        "note": "Benign and phishing are sampled identically to the natural regime. MALWARE keeps every confirmed domain-hosted record and downsamples IP-hosted records so that host type alone cannot drive MALWARE recall."
+      },
+      "viewDistribution": {
+        "BENIGN": 20000,
+        "MALWARE": 5568,
+        "PHISHING": 20000
+      },
+      "hostTypeCounts": {
+        "DOMAIN": 42784,
+        "IPV4": 2784,
+        "IPV6": 0
+      },
+      "hostTypeShare": {
+        "DOMAIN": 0.9389044943820225,
+        "IPV4": 0.061095505617977525,
+        "IPV6": 0.0
+      },
+      "splits": {
+        "trainSize": 31897,
+        "validationSize": 6835,
+        "testSize": 6836,
+        "trainDistribution": {
+          "BENIGN": 14017,
+          "MALWARE": 3896,
+          "PHISHING": 13984
+        },
+        "validationDistribution": {
+          "BENIGN": 2997,
+          "MALWARE": 835,
+          "PHISHING": 3003
+        },
+        "testDistribution": {
+          "BENIGN": 2986,
+          "MALWARE": 837,
+          "PHISHING": 3013
+        },
+        "uniqueDomains": {
+          "train": 31897,
+          "validation": 6835,
+          "test": 6836
+        },
+        "domainLeakage": 0,
+        "testHostTypeCounts": {
+          "DOMAIN": 6430,
+          "IPV4": 406,
+          "IPV6": 0
+        },
+        "testHostTypeShare": {
+          "DOMAIN": 0.9406085430076068,
+          "IPV4": 0.05939145699239321,
+          "IPV6": 0.0
+        }
+      }
+    }
+  },
+  "splitSeed": 42,
+  "splitMethod": "registrable_domain_group_split",
+  "biasAudit": {
+    "rows": 93030,
+    "warnings": [
+      "Possible dataset source artifact: DOMAIN_ONLY has_ip_address_percent differs by 57.3 percentage points across classes.",
+      "Possible dataset source artifact: every observed source maps to only one label; source/class confounding is present."
+    ]
+  },
+  "snapshots": [
+    {
+      "snapshot_id": "snapshot-2026-09-20",
+      "download_time": "2026-09-20T01:39:11+00:00",
+      "sources": [
+        {
+          "source": "cert_polska",
+          "source_version": null,
+          "file": "cert_polska/domains.json",
+          "sha256": "e7a9f069a0af568a3a71366203c2e54d35be05d78fa65015920b3c0b28ffb58e",
+          "file_size": 23564279,
+          "record_count": 132974,
+          "acquired_at": "2026-09-20T02:54:49+00:00",
+          "official_endpoint": "https://hole.cert.pl/domains/v2/domains.json"
+        },
+        {
+          "source": "commoncrawl",
+          "source_version": "CC-MAIN-2026-39",
+          "file": "commoncrawl/commoncrawl_candidates.jsonl",
+          "sha256": "988776fd45d47117ac30613c5d604e8f894ce4e3d9013867465645bb258b02ac",
+          "file_size": 3970,
+          "record_count": 7
+        },
+        {
+          "source": "openphish",
+          "source_version": null,
+          "file": "openphish/openphish-community.txt",
+          "sha256": "4a69e59ce027acd328f417de9120e07d18102edcacfb0482e0321d8bc7d1802d",
+          "file_size": 14950,
+          "record_count": 300,
+          "acquired_at": "2026-09-20T02:54:37+00:00",
+          "official_endpoint": "https://raw.githubusercontent.com/openphish/public_feed/refs/heads/main/feed.txt"
+        },
+        {
+          "source": "threatfox",
+          "source_version": "get_iocs_days_7",
+          "file": "threatfox/threatfox_iocs.json",
+          "sha256": "8a3abb1f60c12f07f43b7094ca41087413f772bdd07f9dcb42202aaf11e989b5",
+          "file_size": 6995635,
+          "record_count": 2642,
+          "acquired_at": "2026-09-20T04:06:11+00:00"
+        },
+        {
+          "source": "tranco",
+          "source_version": "PY96J",
+          "file": "tranco/tranco.csv.zip",
+          "sha256": "a29161788fe33b216d59692f8b050d169ab2ea1dacc9281ecb2b9ba2fd2b5da3",
+          "file_size": 9726076,
+          "record_count": 1000000,
+          "official_endpoint": "https://tranco-list.eu/top-1m.csv.zip"
+        },
+        {
+          "source": "urlhaus",
+          "source_version": null,
+          "file": "urlhaus/recent.csv",
+          "sha256": "be7a0fea31cde92708c956b5c7d81da99448c7b35b38da9b741678df0d143534",
+          "file_size": 2422373,
+          "record_count": 12757,
+          "acquired_at": "2026-09-20T02:57:00+00:00",
+          "official_endpoint": "https://urlhaus-api.abuse.ch/v2/files/exports/[REDACTED]/recent.csv"
+        }
+      ]
+    }
+  ],
+  "testManifest": {
+    "manifestSchemaVersion": 2,
+    "datasetVersion": "dataset-v1.2.0",
+    "combinedTestSetSha256": "2dd0c73782af23b0d77dcab47bb1ecd57e323fda8de7dcdcbf49c93522e8d83b",
+    "domainAssignmentSha256": "14a10c5861598c1bfbb5876696e82e7198e24b48bf498c5f4f5c796896f75d13",
+    "splitSeed": 42,
+    "views": {
+      "artifact_controlled": {
+        "sha256": "ceeee94abfd23fc13d0752dead1b15d436b0301ae35f83bf1f4e8e69c52103a5",
+        "record_count": 6836,
+        "domain_count": 6836,
+        "file": "artifact_controlled/test.csv"
+      },
+      "natural": {
+        "sha256": "fc171801bdffdfe73bfa1aa8f358c53149f71bb8bfe2c43947cbf7989ae8822d",
+        "record_count": 7120,
+        "domain_count": 7120,
+        "file": "natural/test.csv"
+      }
+    },
+    "primaryRegime": "artifact_controlled",
+    "creationTime": "2026-09-20T04:11:18+00:00"
+  },
+  "testManifestSHA256": "ca31fcd2a1be7828fb0f5afff91b55b9219d2ec5f0ff621d1e5ed12c8c2c0322",
+  "viewEligibility": {
+    "domain_only": true,
+    "full_url": false
+  },
+  "officialExperimentEligible": true,
+  "hostTypeUsage": {
+    "role": "audit, stratification and subgroup analysis only",
+    "isModelFeature": false
+  },
+  "sourcePolicyVersion": "2026-09-20-openphish-certpl-urlhaus-v1",
+  "probabilityStatus": "UNCALIBRATED PROBABILITY",
+  "labelMapping": {
+    "BENIGN": 0,
+    "PHISHING": 1,
+    "MALWARE": 2
+  }
+}

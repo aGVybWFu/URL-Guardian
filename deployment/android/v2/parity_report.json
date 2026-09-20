@@ -1,0 +1,13 @@
+{
+  "fixtureCount": 65,
+  "logitMaxAbsoluteError": 1.0132789611816406e-06,
+  "logitMeanAbsoluteError": 4.772956572196563e-07,
+  "probabilityMaxAbsoluteError": 4.172325134277344e-07,
+  "probabilityMeanAbsoluteError": 1.97096511556083e-07,
+  "classAgreement": 1.0,
+  "requiredClassAgreement": 1.0,
+  "passed": true,
+  "providers": [
+    "CPUExecutionProvider"
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "metadataSchemaVersion": 1,
+  "experimentType": "OFFICIAL_EXPERIMENT",
+  "modelName": "url_guardian_urlbert",
+  "modelVersion": "0.5.0",
+  "experimentId": "URLBERT_DOMAIN_ONLY_V2",
+  "baseModel": "CrabInHoney/urlbert-tiny-v6",
+  "baseModelRevision": "020744435b3be870dabb2bba0b41237bea69b84b",
+  "baseModelArchitecture": "ModernBertModel",
+  "baseModelParams": 2033408,
+  "totalParams": 2099971,
+  "trainableParams": 2099971,
+  "datasetVersion": "dataset-v1.2.0",
+  "datasetView": "domain_only",
+  "featureRepresentation": "DOMAIN_ONLY registrable-domain text (registrable_domain)",
+  "textColumn": "registrable_domain",
+  "testManifestSHA256": "ca31fcd2a1be7828fb0f5afff91b55b9219d2ec5f0ff621d1e5ed12c8c2c0322",
+  "testSetSHA256": null,
+  "labelMapping": {
+    "BENIGN": 0,
+    "PHISHING": 1,
+    "MALWARE": 2
+  },
+  "randomSeed": 42,
+  "deterministicSettings": {
+    "pythonRandom": true,
+    "numpy": true,
+    "torch": true,
+    "cudaManualSeed": true,
+    "deterministicAlgorithms": "warn_only",
+    "cudnnDeterministic": true
+  },
+  "determinismNotes": "Seeds are fixed for Python, NumPy, PyTorch and CUDA, cudnn is set to deterministic mode, and torch.use_deterministic_algorithms uses warn_only. CUDA attention backward kernels and GPU reduction order are still not guaranteed to be bitwise reproducible across runs or hardware.",
+  "classWeights": {
+    "BENIGN": 0.7585313072221825,
+    "PHISHING": 0.7603213196033562,
+    "MALWARE": 2.72903832991102
+  },
+  "classWeightSource": "train split class distribution only",
+  "lossFunction": "weighted cross entropy",
+  "tokenizer": {
+    "name": "CrabInHoney/urlbert-tiny-v6",
+    "revision": "020744435b3be870dabb2bba0b41237bea69b84b",
+    "class": "TokenizersBackend",
+    "vocabSize": 8192,
+    "specialTokens": {
+      "unk_token": "[UNK]",
+      "sep_token": "[SEP]",
+      "pad_token": "[PAD]",
+      "cls_token": "[CLS]",
+      "mask_token": "[MASK]"
+    }
+  },
+  "maxLength": 32,
+  "pooling": "cls_mean",
+  "headHiddenSize": 256,
+  "headDropout": 0.1,
+  "epochs": 5,
+  "epochsCompleted": 5,
+  "batchSize": 512,
+  "batchSizeSelection": "largest VRAM-fitting candidate that keeps at least 40 optimizer steps per epoch",
+  "optimizerStepsPerEpoch": 63,
+  "gradientAccumulationSteps": 1,
+  "learningRate": 2e-05,
+  "optimizer": "AdamW",
+  "scheduler": "linear warmup (0.1) + linear decay",
+  "weightDecay": 0.01,
+  "maxGradNorm": 1.0,
+  "mixedPrecision": "torch.bfloat16",
+  "libraryVersions": {
+    "python": "3.11.9",
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1"
+  },
+  "gpu": {
+    "device": "cuda",
+    "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "vramBytes": 8585216000,
+    "vramGb": 8.0,
+    "cudaVersion": "12.6",
+    "torchVersion": "2.14.0+cu126",
+    "computeCapability": "8.9"
+  },
+  "trainingTimeSeconds": 15.85,
+  "peakVramBytes": 583601152,
+  "bestValidationEpoch": 3,
+  "bestValidationMacroF1": 0.7305265061521066,
+  "trainCount": 31897,
+  "validationCount": 6835,
+  "testCount": 0,
+  "datasetContract": {
+    "datasetVersion": "dataset-v1.2.0",
+    "datasetView": "domain_only",
+    "textColumn": "registrable_domain",
+    "splits": {
+      "test": {
+        "rowCount": 6836,
+        "uniqueDomains": 6836,
+        "labelDistribution": {
+          "BENIGN": 2986,
+          "MALWARE": 837,
+          "PHISHING": 3013
+        },
+        "textSha256": "05b97b1dff1ad581720c2a96dc0f548dc112fca25dcbca82bc37f96510697170"
+      },
+      "train": {
+        "rowCount": 31897,
+        "uniqueDomains": 31897,
+        "labelDistribution": {
+          "BENIGN": 14017,
+          "MALWARE": 3896,
+          "PHISHING": 13984
+        },
+        "textSha256": "b26b62200f76605acf69ba17162e1bbbbc31010f6d9eb55e6edea9c2ee1a7e39"
+      },
+      "validation": {
+        "rowCount": 6835,
+        "uniqueDomains": 6835,
+        "labelDistribution": {
+          "BENIGN": 2997,
+          "MALWARE": 835,
+          "PHISHING": 3003
+        },
+        "textSha256": "1b8f80770cb281a97ad9448084dc6032c0c6fcc9fe7cedcb6b3503e380eb6d0e"
+      }
+    },
+    "domainLeakage": 0
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "trainLoss": 1.0498853373662818,
+      "validationLoss": 0.9860620884713939,
+      "validationAccuracy": 0.5972201901975128,
+      "validationMacroPrecision": 0.6860701880189742,
+      "validationMacroRecall": 0.5744973207381724,
+      "validationMacroF1": 0.5541557648354789,
+      "validationPerClassRecall": {
+        "BENIGN": 0.9586252919586253,
+        "PHISHING": 0.26307026307026304,
+        "MALWARE": 0.5017964071856288
+      },
+      "validationPhishingRecall": 0.26307026307026304,
+      "validationMalwareRecall": 0.5017964071856288,
+      "validationBenignFpr": 0.041374708041374705
+    },
+    {
+      "epoch": 2,
+      "trainLoss": 0.8629649501667279,
+      "validationLoss": 0.7576128292537206,
+      "validationAccuracy": 0.7528895391367959,
+      "validationMacroPrecision": 0.8274192229617645,
+      "validationMacroRecall": 0.6925147720889572,
+      "validationMacroF1": 0.7304813528204672,
+      "validationPerClassRecall": {
+        "BENIGN": 0.8284951618284951,
+        "PHISHING": 0.7472527472527473,
+        "MALWARE": 0.5017964071856288
+      },
+      "validationPhishingRecall": 0.7472527472527473,
+      "validationMalwareRecall": 0.5017964071856288,
+      "validationBenignFpr": 0.17150483817150483
+    },
+    {
+      "epoch": 3,
+      "trainLoss": 0.7238779956111154,
+      "validationLoss": 0.68100439520238,
+      "validationAccuracy": 0.761521580102414,
+      "validationMacroPrecision": 0.7769670360229027,
+      "validationMacroRecall": 0.7074389550770123,
+      "validationMacroF1": 0.7305265061521066,
+      "validationPerClassRecall": {
+        "BENIGN": 0.8545211878545211,
+        "PHISHING": 0.7312687312687313,
+        "MALWARE": 0.5365269461077844
+      },
+      "validationPhishingRecall": 0.7312687312687313,
+      "validationMalwareRecall": 0.5365269461077844,
+      "validationBenignFpr": 0.1454788121454788
+    },
+    {
+      "epoch": 4,
+      "trainLoss": 0.6745705606178957,
+      "validationLoss": 0.6497015298938961,
+      "validationAccuracy": 0.7654718361375275,
+      "validationMacroPrecision": 0.741574659746791,
+      "validationMacroRecall": 0.7193366485448988,
+      "validationMacroF1": 0.7288688786184133,
+      "validationPerClassRecall": {
+        "BENIGN": 0.8041374708041374,
+        "PHISHING": 0.7802197802197802,
+        "MALWARE": 0.5736526946107784
+      },
+      "validationPhishingRecall": 0.7802197802197802,
+      "validationMalwareRecall": 0.5736526946107784,
+      "validationBenignFpr": 0.19586252919586253
+    },
+    {
+      "epoch": 5,
+      "trainLoss": 0.6566500761021072,
+      "validationLoss": 0.6405924592300671,
+      "validationAccuracy": 0.7659107534747622,
+      "validationMacroPrecision": 0.7391592974943865,
+      "validationMacroRecall": 0.7199596281432609,
+      "validationMacroF1": 0.7282100899685505,
+      "validationPerClassRecall": {
+        "BENIGN": 0.8068068068068068,
+        "PHISHING": 0.7782217782217782,
+        "MALWARE": 0.5748502994011976
+      },
+      "validationPhishingRecall": 0.7782217782217782,
+      "validationMalwareRecall": 0.5748502994011976,
+      "validationBenignFpr": 0.1931931931931932
+    }
+  ],
+  "trainedAt": "2026-09-20T04:14:45+00:00",
+  "testMetrics": {
+    "accuracy": 0.7557050906963136,
+    "macro_precision": 0.7726218626223135,
+    "macro_recall": 0.694886026361361,
+    "macro_f1": 0.7191033327549176,
+    "weighted_f1": 0.7521994623366717,
+    "phishing_recall": 0.724527049452373,
+    "malware_recall": 0.5017921146953405,
+    "benign_false_positive_rate": 0.1416610850636303,
+    "malicious_false_negative_rate": 0.28519480519480517,
+    "per_class": {
+      "BENIGN": {
+        "precision": 0.7000819448238186,
+        "recall": 0.8583389149363697,
+        "f1-score": 0.7711749661501429,
+        "support": 2986.0
+      },
+      "PHISHING": {
+        "precision": 0.8253308128544423,
+        "recall": 0.724527049452373,
+        "f1-score": 0.7716507599858607,
+        "support": 3013.0
+      },
+      "MALWARE": {
+        "precision": 0.7924528301886793,
+        "recall": 0.5017921146953405,
+        "f1-score": 0.6144842721287491,
+        "support": 837.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        2563,
+        372,
+        51
+      ],
+      [
+        771,
+        2183,
+        59
+      ],
+      [
+        327,
+        90,
+        420
+      ]
+    ],
+    "auroc_ovr_macro": 0.8689269440591936,
+    "auprc_ovr_macro": 0.7853668561573297,
+    "datasetVersion": "dataset-v1.2.0",
+    "datasetView": "domain_only",
+    "testManifestSHA256": "ca31fcd2a1be7828fb0f5afff91b55b9219d2ec5f0ff621d1e5ed12c8c2c0322",
+    "testSetSHA256": "ceeee94abfd23fc13d0752dead1b15d436b0301ae35f83bf1f4e8e69c52103a5",
+    "rowCount": 6836,
+    "probabilityStatus": "UNCALIBRATED PROBABILITY",
+    "labelNames": [
+      "BENIGN",
+      "PHISHING",
+      "MALWARE"
+    ],
+    "modelVersion": "0.5.0"
+  },
+  "probabilityStatus": "UNCALIBRATED PROBABILITY",
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel"
+  },
+  "modelSHA256": "d329d6eb3ca786048bf585627c084b18b16f5da799ffab56f80562116c9b9eba",
+  "metrics": {
+    "test": {
+      "accuracy": 0.7557050906963136,
+      "macro_precision": 0.7726218626223135,
+      "macro_recall": 0.694886026361361,
+      "macro_f1": 0.7191033327549176,
+      "weighted_f1": 0.7521994623366717,
+      "phishing_recall": 0.724527049452373,
+      "malware_recall": 0.5017921146953405,
+      "benign_false_positive_rate": 0.1416610850636303,
+      "malicious_false_negative_rate": 0.28519480519480517,
+      "per_class": {
+        "BENIGN": {
+          "precision": 0.7000819448238186,
+          "recall": 0.8583389149363697,
+          "f1-score": 0.7711749661501429,
+          "support": 2986.0
+        },
+        "PHISHING": {
+          "precision": 0.8253308128544423,
+          "recall": 0.724527049452373,
+          "f1-score": 0.7716507599858607,
+          "support": 3013.0
+        },
+        "MALWARE": {
+          "precision": 0.7924528301886793,
+          "recall": 0.5017921146953405,
+          "f1-score": 0.6144842721287491,
+          "support": 837.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          2563,
+          372,
+          51
+        ],
+        [
+          771,
+          2183,
+          59
+        ],
+        [
+          327,
+          90,
+          420
+        ]
+      ],
+      "auroc_ovr_macro": 0.8689269440591936,
+      "auprc_ovr_macro": 0.7853668561573297
+    }
+  },
+  "modelSizeBytes": 8417445,
+  "evaluation": {
+    "evaluatedAt": "2026-09-20T04:15:02+00:00",
+    "latencyGpuMs": {
+      "averageMs": 3.050317500037636,
+      "p50Ms": 2.9952000004414003,
+      "p95Ms": 3.610400002435199
+    },
+    "peakVramBytes": 72123392,
+    "testRowCount": 6836,
+    "probabilityStatus": "UNCALIBRATED PROBABILITY"
+  }
+}

@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "url-guardian"
+version = "1.0.0"
+description = "Static URL research: binary phishing, threat intelligence and the UGDM decision model"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "pandas>=2.2,<4",
+  "numpy>=1.26,<3",
+  "scikit-learn>=1.4,<2",
+  "lightgbm>=4.3,<5",
+  "matplotlib>=3.8,<4",
+  "tldextract>=5.1,<6",
+  "PyYAML>=6,<7",
+  "joblib>=1.3,<2",
+  "certifi>=2024.2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+urlbert = [
+  "torch>=2.4",
+  "transformers>=4.48",
+  "safetensors>=0.4",
+]
+deployment = [
+  "onnx>=1.17,<2",
+  "onnxruntime>=1.20,<2",
+  "onnxscript>=0.2,<1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

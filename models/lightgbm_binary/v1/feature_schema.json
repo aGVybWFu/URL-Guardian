@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "features": [
+    {
+      "name": "url_length",
+      "description": "Total normalized URL length",
+      "type": "integer"
+    },
+    {
+      "name": "hostname_length",
+      "description": "ASCII hostname length",
+      "type": "integer"
+    },
+    {
+      "name": "registrable_domain_length",
+      "description": "Public-Suffix-aware registrable domain length",
+      "type": "integer"
+    },
+    {
+      "name": "path_length",
+      "description": "Path length without query or fragment",
+      "type": "integer"
+    },
+    {
+      "name": "query_length",
+      "description": "Query string length",
+      "type": "integer"
+    },
+    {
+      "name": "subdomain_count",
+      "description": "Number of subdomain labels",
+      "type": "integer"
+    },
+    {
+      "name": "dot_count",
+      "description": "Count of dots in the URL",
+      "type": "integer"
+    },
+    {
+      "name": "hyphen_count",
+      "description": "Count of hyphens in the URL",
+      "type": "integer"
+    },
+    {
+      "name": "underscore_count",
+      "description": "Count of underscores in the URL",
+      "type": "integer"
+    },
+    {
+      "name": "slash_count",
+      "description": "Count of slashes in the URL",
+      "type": "integer"
+    },
+    {
+      "name": "digit_count",
+      "description": "Count of decimal digits",
+      "type": "integer"
+    },
+    {
+      "name": "letter_count",
+      "description": "Count of Unicode alphabetic characters",
+      "type": "integer"
+    },
+    {
+      "name": "special_character_count",
+      "description": "Count of non-alphanumeric characters",
+      "type": "integer"
+    },
+    {
+      "name": "percent_encoded_count",
+      "description": "Count of percent-encoded octets",
+      "type": "integer"
+    },
+    {
+      "name": "parameter_count",
+      "description": "Count of ampersand-separated query parameters",
+      "type": "integer"
+    },
+    {
+      "name": "is_https",
+      "description": "URL uses HTTPS",
+      "type": "boolean"
+    },
+    {
+      "name": "is_http",
+      "description": "URL uses HTTP",
+      "type": "boolean"
+    },
+    {
+      "name": "has_ip_address",
+      "description": "Hostname is an IPv4 or IPv6 literal",
+      "type": "boolean"
+    },
+    {
+      "name": "has_ipv4",
+      "description": "Hostname is an IPv4 literal",
+      "type": "boolean"
+    },
+    {
+      "name": "has_ipv6",
+      "description": "Hostname is an IPv6 literal",
+      "type": "boolean"
+    },
+    {
+      "name": "has_punycode",
+      "description": "Hostname contains an xn-- label",
+      "type": "boolean"
+    },
+    {
+      "name": "has_at_symbol",
+      "description": "URL contains an at sign",
+      "type": "boolean"
+    },
+    {
+      "name": "has_non_default_port",
+      "description": "URL specifies a non-default port",
+      "type": "boolean"
+    },
+    {
+      "name": "has_fragment",
+      "description": "URL contains a fragment",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_login",
+      "description": "URL contains the token login",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_signin",
+      "description": "URL contains the token signin",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_verify",
+      "description": "URL contains the token verify",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_verification",
+      "description": "URL contains the token verification",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_secure",
+      "description": "URL contains the token secure",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_account",
+      "description": "URL contains the token account",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_password",
+      "description": "URL contains the token password",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_update",
+      "description": "URL contains the token update",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_payment",
+      "description": "URL contains the token payment",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_wallet",
+      "description": "URL contains the token wallet",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_bank",
+      "description": "URL contains the token bank",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_confirm",
+      "description": "URL contains the token confirm",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_auth",
+      "description": "URL contains the token auth",
+      "type": "boolean"
+    },
+    {
+      "name": "contains_oauth",
+      "description": "URL contains the token oauth",
+      "type": "boolean"
+    },
+    {
+      "name": "url_entropy",
+      "description": "Shannon entropy of the normalized URL",
+      "type": "float"
+    },
+    {
+      "name": "hostname_entropy",
+      "description": "Shannon entropy of the hostname",
+      "type": "float"
+    },
+    {
+      "name": "digit_ratio",
+      "description": "Digit count divided by URL length",
+      "type": "float"
+    },
+    {
+      "name": "special_character_ratio",
+      "description": "Special-character count divided by URL length",
+      "type": "float"
+    },
+    {
+      "name": "hostname_to_url_length_ratio",
+      "description": "Hostname length divided by URL length",
+      "type": "float"
+    }
+  ]
+}

@@ -1,0 +1,1212 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "DecisionPolicyV2",
+  "reviewAt": 0.35,
+  "blockAt": 0.85,
+  "fixtureCount": 65,
+  "actionCounts": {
+    "ALLOW": 56,
+    "REVIEW": 7,
+    "BLOCK": 2
+  },
+  "reasonCounts": {
+    "LOW_RISK": 56,
+    "ELEVATED_PROBABILITY": 7,
+    "HIGH_PROBABILITY_WITH_EVIDENCE": 2
+  },
+  "reasonCodes": [
+    "KNOWN_MALICIOUS_GUARDRAIL",
+    "WHITELIST_ALLOW",
+    "OFFICIAL_BRAND_DOMAIN_ALLOW",
+    "LOW_RISK",
+    "BRAND_IMPERSONATION_BLOCK",
+    "BRAND_IMPERSONATION_REVIEW",
+    "HIGH_PROBABILITY_WITH_EVIDENCE",
+    "SHORTENER_REVIEW",
+    "CROSS_DOMAIN_REDIRECT_REVIEW",
+    "ELEVATED_PROBABILITY"
+  ],
+  "fixtures": [
+    {
+      "input": "https://example.com/",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "http://example.org/docs",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "example.net/help",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://www.example.com/account",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://shop.example.org/payment",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://support.example.net/verify",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://login.example.com/session",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://secure.example.org/update",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/wallet",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/password/reset",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://a.b.c.example.com/path",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://xn--r8jz45g.xn--zckzah/",
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "http://192.0.2.10/test",
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://[2001:db8::1]:8443/demo",
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com:4443/portal",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://user@example.com/profile",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/a-b-c",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://12345.example.net/67890",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/%2Fsafe?q=%AA",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/path?token=REDACTED",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/#section",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": " HTTPS://EXAMPLE.COM./MixedCase ",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://例え.テスト/安全",
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://sub.example.co.uk/guide",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://sub.example.com.tw/guide",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/a_b_c",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/a.b.c",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/signin",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/confirmation",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/oauth/callback",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/bank/info",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "http://example.org:80/default",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net:443/default",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://0.example.com/",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://hyphen-name.example.org/",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://many.dots.in.example.net/",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/?a=1&b=2&c=3",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/%41%42%43",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/trailing/",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://localhost.example/test",
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://dev.example.com:8080/",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/@symbol",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/login/verify/account",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/pay-ment",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "http://198.51.100.24:8080/login",
+      "expectedAction": "BLOCK",
+      "expectedRisk": "DANGEROUS",
+      "expectedReasonCode": "HIGH_PROBABILITY_WITH_EVIDENCE",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://203.0.113.9/",
+      "expectedAction": "BLOCK",
+      "expectedRisk": "DANGEROUS",
+      "expectedReasonCode": "HIGH_PROBABILITY_WITH_EVIDENCE",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://[2001:db8:1::5]/",
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://xn--e1afmkfd.xn--p1ai/",
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/a%20space",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/?next=https%3A%2F%2Fexample.net",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/?q=000000",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://a.example.com/secure",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://b.example.org/verify",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://c.example.net/account",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/no-risk-words",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/index.html",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/api/v1/resource",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/download/file.zip",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/news/2026/09/20",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/search?q=safe",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/~user",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.org/plus+sign",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.net/semicolon;value",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    },
+    {
+      "input": "https://example.com/comma,value",
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK",
+      "brandDetected": false,
+      "brandOfficialDomain": false,
+      "brandDomainMismatch": false,
+      "brandRiskScore": 0.0,
+      "shortenerDetected": false,
+      "redirectStatus": "NOT_OBSERVED"
+    }
+  ],
+  "brandCases": [
+    {
+      "input": "https://www.paypal.com/login",
+      "expectedDetected": true,
+      "expectedOfficialDomain": true,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.0
+    },
+    {
+      "input": "https://login.paypal.com/session",
+      "expectedDetected": true,
+      "expectedOfficialDomain": true,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.0
+    },
+    {
+      "input": "https://fb.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": true,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.0
+    },
+    {
+      "input": "https://paypal-login.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.85
+    },
+    {
+      "input": "https://paypal.com.evil.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.7
+    },
+    {
+      "input": "https://paypa1-login.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.95
+    },
+    {
+      "input": "https://example.com/paypal/login",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.35
+    },
+    {
+      "input": "https://applepie.example.com/",
+      "expectedDetected": false,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.0
+    },
+    {
+      "input": "https://example.com/",
+      "expectedDetected": false,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": false,
+      "expectedRiskScore": 0.0
+    },
+    {
+      "input": "https://xn--ypal-43d9g.com/",
+      "expectedDetected": true,
+      "expectedOfficialDomain": false,
+      "expectedDomainMismatch": true,
+      "expectedRiskScore": 0.95
+    }
+  ],
+  "shortenerCases": [
+    {
+      "input": "https://bit.ly/abc123",
+      "expectedDetected": true,
+      "expectedDomain": "bit.ly"
+    },
+    {
+      "input": "https://go.bit.ly/xyz",
+      "expectedDetected": true,
+      "expectedDomain": "bit.ly"
+    },
+    {
+      "input": "https://example.com/path",
+      "expectedDetected": false,
+      "expectedDomain": null
+    },
+    {
+      "input": "https://youtu.be/abc",
+      "expectedDetected": false,
+      "expectedDomain": null
+    }
+  ],
+  "decisionCases": [
+    {
+      "name": "guardrail_official_domain",
+      "features": {
+        "phishing_probability": 0.01,
+        "known_malicious": 1.0,
+        "brand_detected": 1.0
+      },
+      "availability": {
+        "known_malicious": true,
+        "whitelist_hit": false,
+        "brand_detected": true,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": true,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "BLOCK",
+      "expectedRisk": "DANGEROUS",
+      "expectedReasonCode": "KNOWN_MALICIOUS_GUARDRAIL"
+    },
+    {
+      "name": "official_brand_low_probability",
+      "features": {
+        "phishing_probability": 0.1,
+        "brand_detected": 1.0,
+        "brand_risk_score": 0.0
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": true,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": true,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "OFFICIAL_BRAND_DOMAIN_ALLOW"
+    },
+    {
+      "name": "official_brand_high_probability",
+      "features": {
+        "phishing_probability": 0.6,
+        "brand_detected": 1.0,
+        "brand_risk_score": 0.0
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": true,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": true,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "OFFICIAL_BRAND_DOMAIN_ALLOW"
+    },
+    {
+      "name": "official_brand_with_redirect_review",
+      "features": {
+        "phishing_probability": 0.1,
+        "brand_detected": 1.0,
+        "brand_risk_score": 0.0,
+        "cross_domain_redirect": 1.0,
+        "redirect_count": 2.0
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": true,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": true,
+        "shortener_detected": false,
+        "cross_domain_redirect": true,
+        "redirect_count": true,
+        "contains_login": false
+      },
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "CROSS_DOMAIN_REDIRECT_REVIEW"
+    },
+    {
+      "name": "brand_mismatch_block",
+      "features": {
+        "phishing_probability": 0.9,
+        "brand_detected": 1.0,
+        "brand_domain_mismatch": 1.0,
+        "brand_risk_score": 0.95
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": true,
+        "brand_domain_mismatch": true,
+        "brand_risk_score": true,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "BLOCK",
+      "expectedRisk": "DANGEROUS",
+      "expectedReasonCode": "BRAND_IMPERSONATION_BLOCK"
+    },
+    {
+      "name": "brand_mismatch_review",
+      "features": {
+        "phishing_probability": 0.5,
+        "brand_detected": 1.0,
+        "brand_domain_mismatch": 1.0,
+        "brand_risk_score": 0.85
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": true,
+        "brand_domain_mismatch": true,
+        "brand_risk_score": true,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "BRAND_IMPERSONATION_REVIEW"
+    },
+    {
+      "name": "brand_score_review_low_probability",
+      "features": {
+        "phishing_probability": 0.05,
+        "brand_detected": 1.0,
+        "brand_domain_mismatch": 1.0,
+        "brand_risk_score": 0.5
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": true,
+        "brand_domain_mismatch": true,
+        "brand_risk_score": true,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "BRAND_IMPERSONATION_REVIEW"
+    },
+    {
+      "name": "shortener_review",
+      "features": {
+        "phishing_probability": 0.05,
+        "shortener_detected": 1.0
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": false,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": false,
+        "shortener_detected": true,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "SHORTENER_REVIEW"
+    },
+    {
+      "name": "shortener_with_evidence_block",
+      "features": {
+        "phishing_probability": 0.95,
+        "shortener_detected": 1.0,
+        "contains_login": 1.0
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": false,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": false,
+        "shortener_detected": true,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": true
+      },
+      "expectedAction": "BLOCK",
+      "expectedRisk": "DANGEROUS",
+      "expectedReasonCode": "HIGH_PROBABILITY_WITH_EVIDENCE"
+    },
+    {
+      "name": "cross_domain_redirect_review",
+      "features": {
+        "phishing_probability": 0.05,
+        "cross_domain_redirect": 1.0,
+        "redirect_count": 3.0
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": false,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": false,
+        "shortener_detected": false,
+        "cross_domain_redirect": true,
+        "redirect_count": true,
+        "contains_login": false
+      },
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "CROSS_DOMAIN_REDIRECT_REVIEW"
+    },
+    {
+      "name": "unobserved_redirect_allow",
+      "features": {
+        "phishing_probability": 0.05
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": false,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": false,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK"
+    },
+    {
+      "name": "high_probability_with_evidence",
+      "features": {
+        "phishing_probability": 0.9,
+        "contains_login": 1.0
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": false,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": false,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": true
+      },
+      "expectedAction": "BLOCK",
+      "expectedRisk": "DANGEROUS",
+      "expectedReasonCode": "HIGH_PROBABILITY_WITH_EVIDENCE"
+    },
+    {
+      "name": "high_probability_without_evidence",
+      "features": {
+        "phishing_probability": 0.9
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": false,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": false,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "REVIEW",
+      "expectedRisk": "SUSPICIOUS",
+      "expectedReasonCode": "ELEVATED_PROBABILITY"
+    },
+    {
+      "name": "low_risk_allow",
+      "features": {
+        "phishing_probability": 0.1
+      },
+      "availability": {
+        "known_malicious": false,
+        "whitelist_hit": false,
+        "brand_detected": false,
+        "brand_domain_mismatch": false,
+        "brand_risk_score": false,
+        "shortener_detected": false,
+        "cross_domain_redirect": false,
+        "redirect_count": false,
+        "contains_login": false
+      },
+      "expectedAction": "ALLOW",
+      "expectedRisk": "SAFE",
+      "expectedReasonCode": "LOW_RISK"
+    }
+  ]
+}

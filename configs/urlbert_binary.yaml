@@ -1,0 +1,62 @@
+# Phase 2.6 URLBERT binary phishing configuration.
+#
+# Binary BENIGN(0) / PHISHING(1) head on dataset-v1.3.0. MALWARE is not part of
+# this label space; it is handled by the Threat Intelligence layer.
+urlbert:
+  experiment_id: "URLBERT_PHISHING_BINARY_V1"
+  model_name: "url_guardian_urlbert_binary"
+  model_version: "0.6.0"
+  comparison_urlbert_model: "URLBERT_PHISHING_BINARY_V1"
+  base_model: "CrabInHoney/urlbert-tiny-v6"
+  base_model_revision: "020744435b3be870dabb2bba0b41237bea69b84b"
+  dataset_version: "dataset-v1.3.0"
+  dataset_view: "domain_only"
+  dataset_metadata: "data/processed/v1.3.0/dataset_metadata.json"
+  test_manifest: "data/splits/v1.3.0/test_manifest_v1.3.0.json"
+  test_manifest_view: "binary"
+  expected_test_manifest_sha256: "bf640e52884a4b86d5edd6af25f686df3bc6534a181756161caf9c2721f84460"
+  expected_test_sha256: "379c753e8744e9906c68b0bac69ab69525abc27c1bf6de2ff8eecdef5a97fdea"
+  splits_dir: "data/splits/v1.3.0/binary"
+  text_column: "registrable_domain"
+  label_mapping:
+    BENIGN: 0
+    PHISHING: 1
+  pooling: "cls_mean"
+  head_hidden_size: 256
+  head_dropout: 0.1
+  max_length: 32
+  training:
+    seed: 42
+    epochs: 5
+    batch_size: 0
+    batch_size_candidates: [1024, 512, 256, 128, 64, 32, 16]
+    minimum_steps_per_epoch: 40
+    learning_rate: 0.00002
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    scheduler: "linear"
+    optimizer: "adamw"
+    max_grad_norm: 1.0
+    early_stopping_metric: "phishing_f1"
+    early_stopping_patience: 2
+    mixed_precision: "auto"
+    gradient_accumulation_steps: 1
+    num_workers: 0
+  paths:
+    checkpoint_dir: "models/urlbert_binary/v1"
+    metrics: "reports/metrics/v1.3.0/urlbert_binary"
+    figures: "reports/figures/v1.3.0/urlbert_binary"
+    error_analysis: "reports/error_analysis/v1.3.0/urlbert_binary"
+  calibration:
+    method: "temperature_scaling"
+    fit_split: "validation"
+    apply_split: "test"
+  thresholds:
+    # Binary: the positive-class probability is the phishing score.
+    score: "P(PHISHING)"
+    fit_split: "validation"
+    grid: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.7, 0.8, 0.9]
+  benchmark:
+    warmup_iterations: 20
+    timed_iterations: 200
+    hardware_label: "desktop-research-benchmark"

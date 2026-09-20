@@ -1,0 +1,276 @@
+{
+  "metadataSchemaVersion": 2,
+  "experiment_id": "lightgbm_domain_only_dataset-v1.1.0",
+  "experimentType": "OFFICIAL_EXPERIMENT",
+  "officialExperimentEligible": true,
+  "modelName": "url_guardian_lightgbm",
+  "modelVersion": "0.2.0",
+  "model_version": "0.2.0",
+  "datasetView": "DOMAIN_ONLY",
+  "trainedAt": "2026-09-20T03:30:02+00:00",
+  "randomSeed": 42,
+  "random_seed": 42,
+  "datasetVersion": "dataset-v1.1.0",
+  "dataset_version": "dataset-v1.1.0",
+  "snapshot_id": [
+    "snapshot-2026-09-20"
+  ],
+  "featureSchemaVersion": 1,
+  "featureNames": [
+    "url_length",
+    "hostname_length",
+    "registrable_domain_length",
+    "path_length",
+    "query_length",
+    "subdomain_count",
+    "dot_count",
+    "hyphen_count",
+    "underscore_count",
+    "slash_count",
+    "digit_count",
+    "letter_count",
+    "special_character_count",
+    "percent_encoded_count",
+    "parameter_count",
+    "is_https",
+    "is_http",
+    "has_ip_address",
+    "has_ipv4",
+    "has_ipv6",
+    "has_punycode",
+    "has_at_symbol",
+    "has_non_default_port",
+    "has_fragment",
+    "contains_login",
+    "contains_signin",
+    "contains_verify",
+    "contains_verification",
+    "contains_secure",
+    "contains_account",
+    "contains_password",
+    "contains_update",
+    "contains_payment",
+    "contains_wallet",
+    "contains_bank",
+    "contains_confirm",
+    "contains_auth",
+    "contains_oauth",
+    "url_entropy",
+    "hostname_entropy",
+    "digit_ratio",
+    "special_character_ratio",
+    "hostname_to_url_length_ratio"
+  ],
+  "features": [
+    "url_length",
+    "hostname_length",
+    "registrable_domain_length",
+    "path_length",
+    "query_length",
+    "subdomain_count",
+    "dot_count",
+    "hyphen_count",
+    "underscore_count",
+    "slash_count",
+    "digit_count",
+    "letter_count",
+    "special_character_count",
+    "percent_encoded_count",
+    "parameter_count",
+    "is_https",
+    "is_http",
+    "has_ip_address",
+    "has_ipv4",
+    "has_ipv6",
+    "has_punycode",
+    "has_at_symbol",
+    "has_non_default_port",
+    "has_fragment",
+    "contains_login",
+    "contains_signin",
+    "contains_verify",
+    "contains_verification",
+    "contains_secure",
+    "contains_account",
+    "contains_password",
+    "contains_update",
+    "contains_payment",
+    "contains_wallet",
+    "contains_bank",
+    "contains_confirm",
+    "contains_auth",
+    "contains_oauth",
+    "url_entropy",
+    "hostname_entropy",
+    "digit_ratio",
+    "special_character_ratio",
+    "hostname_to_url_length_ratio"
+  ],
+  "labelMapping": {
+    "BENIGN": 0,
+    "PHISHING": 1,
+    "MALWARE": 2
+  },
+  "trainSize": 31542,
+  "validationSize": 6759,
+  "testSize": 6756,
+  "train_count": 31542,
+  "validation_count": 6759,
+  "test_count": 6756,
+  "unique_domains": {
+    "train": 31542,
+    "validation": 6759,
+    "test": 6756
+  },
+  "modelParameters": {
+    "objective": "multiclass",
+    "num_class": 3,
+    "learning_rate": 0.05,
+    "n_estimators": 250,
+    "num_leaves": 31,
+    "max_depth": -1,
+    "min_child_samples": 20,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "random_state": 42,
+    "n_jobs": -1,
+    "deterministic": true,
+    "force_col_wise": true
+  },
+  "parameters": {
+    "objective": "multiclass",
+    "num_class": 3,
+    "learning_rate": 0.05,
+    "n_estimators": 250,
+    "num_leaves": 31,
+    "max_depth": -1,
+    "min_child_samples": 20,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "random_state": 42,
+    "n_jobs": -1,
+    "deterministic": true,
+    "force_col_wise": true
+  },
+  "useClassWeight": true,
+  "classWeight": "balanced",
+  "testManifestSha256": "21b7b7284f5d207beb4d4d673fc0471e38e92fef0a15d278710ff5bedd596e20",
+  "testSetSha256": "f2a087792d9ba72f8d4d2e44dbabb18f40c0a2f32c626fca5efd959ec702dcc5",
+  "runtime": {
+    "python": "3.11.9",
+    "lightgbm": "4.7.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "scikitLearn": "1.9.1"
+  },
+  "library_versions": {
+    "python": "3.11.9",
+    "lightgbm": "4.7.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1"
+  },
+  "model_sha256": "738aed14ec076783ee7c01c975ebfdb236161ae4451dd5be2075957f39bdb198",
+  "metrics": {
+    "validation": {
+      "accuracy": 0.7304334960793016,
+      "macro_precision": 0.7989649644711988,
+      "macro_recall": 0.7765020239505412,
+      "macro_f1": 0.7865938527418012,
+      "weighted_f1": 0.7311823043816581,
+      "phishing_recall": 0.7439308280678417,
+      "malware_recall": 0.9161205766710354,
+      "benign_false_positive_rate": 0.33054533288725324,
+      "malicious_false_negative_rate": 0.21379310344827587,
+      "per_class": {
+        "BENIGN": {
+          "precision": 0.7128607053794086,
+          "recall": 0.6694546671127467,
+          "f1-score": 0.6904761904761905,
+          "support": 2989.0
+        },
+        "PHISHING": {
+          "precision": 0.6883076923076923,
+          "recall": 0.7439308280678417,
+          "f1-score": 0.7150391561451175,
+          "support": 3007.0
+        },
+        "MALWARE": {
+          "precision": 0.9957264957264957,
+          "recall": 0.9161205766710354,
+          "f1-score": 0.9542662116040955,
+          "support": 763.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          2001,
+          986,
+          2
+        ],
+        [
+          769,
+          2237,
+          1
+        ],
+        [
+          37,
+          27,
+          699
+        ]
+      ],
+      "auroc_ovr_macro": 0.8648902041071856,
+      "auprc_ovr_macro": 0.8307514886728761
+    },
+    "test": {
+      "accuracy": 0.7149200710479574,
+      "macro_precision": 0.7882145842940892,
+      "macro_recall": 0.7643482829264845,
+      "macro_f1": 0.7751659082091171,
+      "weighted_f1": 0.7157863455566168,
+      "phishing_recall": 0.7250165453342158,
+      "malware_recall": 0.9102209944751382,
+      "benign_false_positive_rate": 0.34219269102990035,
+      "malicious_false_negative_rate": 0.22984516817939135,
+      "per_class": {
+        "BENIGN": {
+          "precision": 0.6969376979936642,
+          "recall": 0.6578073089700996,
+          "f1-score": 0.676807383353273,
+          "support": 3010.0
+        },
+        "PHISHING": {
+          "precision": 0.673739237392374,
+          "recall": 0.7250165453342158,
+          "f1-score": 0.6984379980873446,
+          "support": 3022.0
+        },
+        "MALWARE": {
+          "precision": 0.9939668174962293,
+          "recall": 0.9102209944751382,
+          "f1-score": 0.9502523431867339,
+          "support": 724.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          1980,
+          1029,
+          1
+        ],
+        [
+          828,
+          2191,
+          3
+        ],
+        [
+          33,
+          32,
+          659
+        ]
+      ],
+      "auroc_ovr_macro": 0.8559494466724406,
+      "auprc_ovr_macro": 0.8182112051992504
+    }
+  }
+}

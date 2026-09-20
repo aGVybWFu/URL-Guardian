@@ -1,0 +1,42 @@
+{
+  "datasetVersion": "dataset-v1.0.0",
+  "status": "INCOMPLETE_SOURCE_SET",
+  "buildDate": "2026-09-20T01:43:24+00:00",
+  "rawClassDistribution": {
+    "BENIGN": 1000007
+  },
+  "rawSourceDistribution": {
+    "commoncrawl_tranco_candidate": 7,
+    "tranco": 1000000
+  },
+  "missingLabels": [
+    "MALWARE",
+    "PHISHING"
+  ],
+  "snapshots": [
+    {
+      "snapshot_id": "snapshot-2026-09-20",
+      "download_time": "2026-09-20T01:39:11+00:00",
+      "sources": [
+        {
+          "source": "commoncrawl",
+          "source_version": "CC-MAIN-2026-39",
+          "file": "commoncrawl/commoncrawl_candidates.jsonl",
+          "sha256": "988776fd45d47117ac30613c5d604e8f894ce4e3d9013867465645bb258b02ac",
+          "file_size": 3970,
+          "record_count": 7
+        },
+        {
+          "source": "tranco",
+          "source_version": "PY96J",
+          "file": "tranco/tranco.csv.zip",
+          "sha256": "a29161788fe33b216d59692f8b050d169ab2ea1dacc9281ecb2b9ba2fd2b5da3",
+          "file_size": 9726076,
+          "record_count": 1000000,
+          "official_endpoint": "https://tranco-list.eu/top-1m.csv.zip"
+        }
+      ]
+    }
+  ],
+  "officialExperimentEligible": false
+}

@@ -1,0 +1,59 @@
+project:
+  dataset_version: "dataset-v1.1.0"
+  model_name: "url_guardian_lightgbm"
+  model_version: "0.2.0"
+random_seed: 42
+dataset:
+  target_per_class: 20000
+  preselection_multiplier: 2
+  binary_max_source_share: 0.5
+  full_url_min_benign_records: 20000
+  full_url_min_benign_domains: 4000
+commoncrawl:
+  index_id: "CC-MAIN-2026-39"
+  max_urls_per_domain: 5
+  max_domains: 5000
+  candidate_pool_size: 50000
+  delay_seconds: 0.2
+  workers: 4
+sources:
+  required: ["tranco", "openphish", "cert_polska", "urlhaus"]
+  optional: ["phishtank", "commoncrawl"]
+  phishtank_enabled: false
+  policy_version: "2026-09-20-openphish-certpl-urlhaus-v1"
+  official_run_approved: true
+  bias_reviewed: true
+split:
+  train_ratio: 0.70
+  validation_ratio: 0.15
+  test_ratio: 0.15
+  method: "registrable_domain_group_split"
+training:
+  experiment_mode: "OFFICIAL_EXPERIMENT"
+  use_class_weight: true
+  parameters:
+    objective: "multiclass"
+    num_class: 3
+    learning_rate: 0.05
+    n_estimators: 250
+    num_leaves: 31
+    max_depth: -1
+    min_child_samples: 20
+    subsample: 0.9
+    colsample_bytree: 0.9
+    random_state: 42
+    n_jobs: -1
+    deterministic: true
+    force_col_wise: true
+paths:
+  raw: "data/raw"
+  processed: "data/processed/dataset.csv"
+  splits: "data/splits"
+  conflicts: "reports/conflicts.csv"
+  domain_conflicts: "reports/domain_label_conflicts.csv"
+  domain_only_conflicts: "reports/domain_only_conflicts.csv"
+  dataset_metadata: "data/processed/dataset_metadata.json"
+  model_dir: "models/lightgbm"
+  figures: "reports/figures"
+  metrics: "reports/metrics"
+  dataset_bias: "reports/dataset_bias"

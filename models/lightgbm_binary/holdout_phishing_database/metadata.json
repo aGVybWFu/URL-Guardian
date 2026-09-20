@@ -1,0 +1,197 @@
+{
+  "metadataSchemaVersion": 5,
+  "experimentType": "OFFICIAL_EXPERIMENT",
+  "experimentId": "LightGBM_PHISHING_BINARY_V1_SOURCE_HOLDOUT_PHISHING_DATABASE",
+  "modelName": "url_guardian_lightgbm_binary",
+  "modelVersion": "0.2.0",
+  "datasetVersion": "dataset-v1.3.0",
+  "datasetView": "DOMAIN_ONLY",
+  "task": "binary_phishing",
+  "trainedAt": "2026-09-20T04:54:54+00:00",
+  "randomSeed": 42,
+  "featureSchemaVersion": 1,
+  "featureNames": [
+    "url_length",
+    "hostname_length",
+    "registrable_domain_length",
+    "path_length",
+    "query_length",
+    "subdomain_count",
+    "dot_count",
+    "hyphen_count",
+    "underscore_count",
+    "slash_count",
+    "digit_count",
+    "letter_count",
+    "special_character_count",
+    "percent_encoded_count",
+    "parameter_count",
+    "is_https",
+    "is_http",
+    "has_ip_address",
+    "has_ipv4",
+    "has_ipv6",
+    "has_punycode",
+    "has_at_symbol",
+    "has_non_default_port",
+    "has_fragment",
+    "contains_login",
+    "contains_signin",
+    "contains_verify",
+    "contains_verification",
+    "contains_secure",
+    "contains_account",
+    "contains_password",
+    "contains_update",
+    "contains_payment",
+    "contains_wallet",
+    "contains_bank",
+    "contains_confirm",
+    "contains_auth",
+    "contains_oauth",
+    "url_entropy",
+    "hostname_entropy",
+    "digit_ratio",
+    "special_character_ratio",
+    "hostname_to_url_length_ratio"
+  ],
+  "labelMapping": {
+    "BENIGN": 0,
+    "PHISHING": 1
+  },
+  "trainCount": 21098,
+  "validationCount": 4506,
+  "testCount": 6000,
+  "excludedSources": [
+    "phishing_database"
+  ],
+  "classWeight": "balanced",
+  "testManifestSHA256": "bf640e52884a4b86d5edd6af25f686df3bc6534a181756161caf9c2721f84460",
+  "testSetSHA256": "379c753e8744e9906c68b0bac69ab69525abc27c1bf6de2ff8eecdef5a97fdea",
+  "modelSHA256": "95e3ecd42ac0cba0cb89bbc00f130bf334f5a646794a8ea39c9093f70fdde544",
+  "probabilityStatus": "UNCALIBRATED PROBABILITY",
+  "libraryVersions": {
+    "python": "3.11.9",
+    "lightgbm": "4.7.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1"
+  },
+  "testMetrics": {
+    "accuracy": 0.6385,
+    "precision": 0.6435169346561752,
+    "recall": 0.6253324468085106,
+    "f1": 0.6342943854324734,
+    "specificity": 0.6517379679144385,
+    "false_positive_rate": 0.3482620320855615,
+    "false_negative_rate": 0.37466755319148937,
+    "balanced_accuracy": 0.6385352073614745,
+    "truePositive": 1881,
+    "trueNegative": 1950,
+    "falsePositive": 1042,
+    "falseNegative": 1127,
+    "benignSupport": 2992,
+    "phishingSupport": 3008,
+    "per_class": {
+      "BENIGN": {
+        "precision": 0.6337341566460839,
+        "recall": 0.6517379679144385,
+        "f1-score": 0.6426099851705388,
+        "support": 2992.0
+      },
+      "PHISHING": {
+        "precision": 0.6435169346561752,
+        "recall": 0.6253324468085106,
+        "f1-score": 0.6342943854324734,
+        "support": 3008.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1950,
+        1042
+      ],
+      [
+        1127,
+        1881
+      ]
+    ],
+    "auroc": 0.6786500481781205,
+    "auprc": 0.6931218887042514,
+    "datasetVersion": "dataset-v1.3.0",
+    "task": "binary_phishing",
+    "experimentId": "LightGBM_PHISHING_BINARY_V1_SOURCE_HOLDOUT_PHISHING_DATABASE",
+    "excludedSources": [
+      "phishing_database"
+    ],
+    "evaluationType": "external-source-holdout",
+    "labelMapping": {
+      "BENIGN": 0,
+      "PHISHING": 1
+    },
+    "testManifestSHA256": "bf640e52884a4b86d5edd6af25f686df3bc6534a181756161caf9c2721f84460",
+    "testSetSHA256": "379c753e8744e9906c68b0bac69ab69525abc27c1bf6de2ff8eecdef5a97fdea",
+    "probabilityStatus": "UNCALIBRATED PROBABILITY",
+    "subgroups": {
+      "ip_host": {
+        "rows": 0
+      },
+      "non_ip_host": {
+        "rows": 6000,
+        "accuracy": 0.6385,
+        "precision": 0.6435169346561752,
+        "recall": 0.6253324468085106,
+        "f1": 0.6342943854324734,
+        "benignFpr": 0.3482620320855615,
+        "auroc": 0.6786500481781205,
+        "auprc": 0.6931218887042514
+      }
+    },
+    "sourceSubgroups": {
+      "cert_polska": {
+        "rows": 1494,
+        "labelDistribution": {
+          "PHISHING": 1494
+        },
+        "accuracy": 0.7583668005354752,
+        "precision": 1.0,
+        "recall": 0.7583668005354752,
+        "f1": 0.8625808907499048,
+        "benignFpr": 0.0
+      },
+      "openphish": {
+        "rows": 16,
+        "labelDistribution": {
+          "PHISHING": 16
+        },
+        "accuracy": 0.5625,
+        "precision": 1.0,
+        "recall": 0.5625,
+        "f1": 0.72,
+        "benignFpr": 0.0
+      },
+      "phishing_database": {
+        "rows": 1498,
+        "labelDistribution": {
+          "PHISHING": 1498
+        },
+        "accuracy": 0.493324432576769,
+        "precision": 1.0,
+        "recall": 0.493324432576769,
+        "f1": 0.6607063030844882,
+        "benignFpr": 0.0
+      },
+      "tranco": {
+        "rows": 2992,
+        "labelDistribution": {
+          "BENIGN": 2992
+        },
+        "accuracy": 0.6517379679144385,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "benignFpr": 0.3482620320855615
+      }
+    }
+  }
+}

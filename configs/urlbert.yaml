@@ -1,0 +1,58 @@
+# Phase 2 URLBERT experiment configuration.
+#
+# This experiment reuses the frozen dataset-v1.1.0 DOMAIN_ONLY dataset and the
+# sealed Test Manifest created in Phase 1.5. It must never re-split the data.
+urlbert:
+  experiment_id: "URLBERT_DOMAIN_ONLY_V1"
+  model_name: "url_guardian_urlbert"
+  model_version: "0.4.0"
+  base_model: "CrabInHoney/urlbert-tiny-v6"
+  # Pinned upstream revision of the base encoder/tokenizer.
+  base_model_revision: "020744435b3be870dabb2bba0b41237bea69b84b"
+  dataset_version: "dataset-v1.1.0"
+  dataset_view: "domain_only"
+  dataset_metadata: "data/processed/dataset_metadata.json"
+  test_manifest: "data/splits/test_manifest.json"
+  expected_test_manifest_sha256: "21b7b7284f5d207beb4d4d673fc0471e38e92fef0a15d278710ff5bedd596e20"
+  expected_test_sha256: "f2a087792d9ba72f8d4d2e44dbabb18f40c0a2f32c626fca5efd959ec702dcc5"
+  splits_dir: "data/splits/domain_only"
+  text_column: "registrable_domain"
+  label_mapping:
+    BENIGN: 0
+    PHISHING: 1
+    MALWARE: 2
+  pooling: "cls_mean"
+  head_hidden_size: 256
+  head_dropout: 0.1
+  # Token analysis on train+validation (N=38301): P50=8, P90=11, P95=12,
+  # P99=14, max=29. max_length=32 gives zero truncation with minimal cost.
+  max_length: 32
+  training:
+    seed: 42
+    epochs: 5
+    # 0 means auto-probe the largest batch size that fits the available VRAM.
+    # The probe is additionally capped so that every epoch keeps at least
+    # minimum_steps_per_epoch optimizer steps and the baseline is not step-starved.
+    batch_size: 0
+    batch_size_candidates: [1024, 512, 256, 128, 64, 32, 16]
+    minimum_steps_per_epoch: 40
+    learning_rate: 0.00002
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+    scheduler: "linear"
+    optimizer: "adamw"
+    max_grad_norm: 1.0
+    early_stopping_metric: "macro_f1"
+    early_stopping_patience: 2
+    mixed_precision: "auto"
+    gradient_accumulation_steps: 1
+    num_workers: 0
+  paths:
+    checkpoint_dir: "models/urlbert/domain_only/v1"
+    metrics: "reports/metrics/urlbert/domain_only"
+    figures: "reports/figures/urlbert/domain_only"
+    error_analysis: "reports/error_analysis/urlbert"
+  benchmark:
+    warmup_iterations: 20
+    timed_iterations: 200
+    hardware_label: "desktop-research-benchmark"

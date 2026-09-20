@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 4,
+  "deploymentVersion": "android-v4",
+  "projectVersion": "1.0.0",
+  "androidVersionName": "1.0.0",
+  "versionCode": 11,
+  "applicationId": "org.urlguardian.app",
+  "buildType": "release",
+  "releaseStatus": "production-signed",
+  "defaultDecisionEngine": "DecisionPolicyV1",
+  "experimentalDecisionEngine": "DecisionPolicyV2",
+  "decisionPolicyV1Thresholds": {
+    "reviewAt": 0.35,
+    "blockAt": 0.85
+  },
+  "reasonCodeVersion": "ReasonCodeV1",
+  "urlbert": {
+    "version": "0.6.0",
+    "onnxSha256": "f81a14452e3e1e90940d734796b86259dd54b52f85c08dc5e64dac05eb8b2ebb",
+    "tokenizerRevision": "020744435b3be870dabb2bba0b41237bea69b84b",
+    "tokenizerSha256": "bd2cfa05429338b17dd1907899ea01f8e62f67f04a86b5ccc3c199e648c61ba9"
+  },
+  "threatIntelligence": {
+    "bundleVersion": "ti-bundle-v1",
+    "snapshotId": "ti-2026-09-20",
+    "snapshotSha256": "c1007b9b9c8e2f4b7ead01822a2c297aead232c3534fbd68d6fb5f52d53d70fe",
+    "bundleSha256": "c6a2aa8dc192e041514cd4ce6b24c25bcbe5094f04bd3fec22aeb2efaafbc205",
+    "brandCatalog": "BrandCatalogV1",
+    "shortenerCatalog": "ShortenerCatalogV1"
+  },
+  "minSdk": 26,
+  "targetSdk": 35,
+  "supportedAbis": [
+    "arm64-v8a",
+    "x86_64"
+  ],
+  "artifacts": {
+    "apk": {
+      "exists": true,
+      "signed": true,
+      "bytes": 82146077,
+      "sha256": "12b4a4e6ae2318a9bf6099f81e3d517e2fbff8bdc70671ce26276e6ed5de5d33"
+    },
+    "aab": {
+      "exists": true,
+      "signed": true,
+      "bytes": 37979727,
+      "sha256": "10929e21e5f375660c9730b37906433802662a9e54d9b0e4855b31a02a7ade9b"
+    }
+  },
+  "signing": {
+    "status": "SIGNED_AND_VERIFIED",
+    "keystoreInsideRepository": false,
+    "signatureVerification": {
+      "apk": true,
+      "aab": true,
+      "matchesKeystoreCertificate": true
+    }
+  },
+  "qualification": {
+    "physicalArm64": true,
+    "deviceClass": "Xiaomi 23013PC75G, Android 15 / API 35, arm64-v8a",
+    "reference": "docs/android_validation.md"
+  },
+  "audits": {
+    "noInternetPermission": true,
+    "secretScanClean": true
+  },
+  "buildTimestamp": "2026-09-20T12:50:52Z",
+  "publicCopyNote": "Local artifact paths, the release commit hash and the signing certificate fingerprint are omitted from the public copy. The signed APK/AAB themselves are not distributed here."
+}

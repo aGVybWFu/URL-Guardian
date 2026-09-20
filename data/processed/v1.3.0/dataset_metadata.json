@@ -1,0 +1,292 @@
+{
+  "metadataSchemaVersion": 4,
+  "datasetVersion": "dataset-v1.3.0",
+  "status": "OFFICIAL_SOURCE_SET",
+  "task": "binary_phishing",
+  "labelMapping": {
+    "BENIGN": 0,
+    "PHISHING": 1
+  },
+  "labelSpace": [
+    "BENIGN",
+    "PHISHING"
+  ],
+  "malwareHandling": {
+    "role": "handled by the Threat Intelligence layer, not by the binary ML label space",
+    "excludedRawRows": 15398,
+    "excludedSources": [
+      "threatfox",
+      "urlhaus"
+    ],
+    "threatIntelligenceProviders": [
+      "URLHAUS",
+      "THREATFOX"
+    ]
+  },
+  "buildDate": "2026-09-20T04:43:41+00:00",
+  "rawClassDistribution": {
+    "BENIGN": 1000007,
+    "PHISHING": 525251
+  },
+  "rawSourceDistribution": {
+    "cert_polska": 132974,
+    "commoncrawl_tranco_candidate": 7,
+    "openphish": 300,
+    "phishing_database": 391977,
+    "tranco": 1000000
+  },
+  "selectedRawClassDistribution": {
+    "BENIGN": 40007,
+    "PHISHING": 80300
+  },
+  "selectedRawSourceDistribution": {
+    "cert_polska": 40000,
+    "commoncrawl_tranco_candidate": 7,
+    "openphish": 300,
+    "phishing_database": 40000,
+    "tranco": 40000
+  },
+  "classDistribution": {
+    "BENIGN": 40007,
+    "PHISHING": 80239
+  },
+  "sourceDistribution": {
+    "cert_polska": 40000,
+    "commoncrawl_tranco_candidate": 7,
+    "openphish": 300,
+    "phishing_database": 39939,
+    "tranco": 40000
+  },
+  "uniqueUrlCount": 120246,
+  "numberOfUniqueDomains": 94900,
+  "numberOfRows": 120246,
+  "cleaningStats": {
+    "raw_rows": 120308,
+    "removed_empty": 1,
+    "removed_invalid_label": 0,
+    "removed_exact_duplicates": 1,
+    "removed_invalid_urls": 60,
+    "removed_normalized_duplicates": 0,
+    "removed_conflicts": 0,
+    "remaining_rows": 120246,
+    "class_distribution": {
+      "BENIGN": 40007,
+      "PHISHING": 80239
+    }
+  },
+  "numberOfDomainLabelConflicts": 37,
+  "crossSourceConflictAudit": {
+    "conflictingNormalizedUrls": 0,
+    "conflictingRows": 0,
+    "domainsListedByMultiplePhishingSources": 87,
+    "rule": "A normalized URL that appears as both BENIGN and PHISHING is excluded from the first binary training dataset and written to the conflict report."
+  },
+  "openphishAccumulation": {
+    "snapshotCount": 1,
+    "snapshots": [
+      {
+        "snapshotDate": "2026-09-20",
+        "file": "data/raw/snapshots/2026-09-20/openphish/openphish-community.txt",
+        "sha256": "4a69e59ce027acd328f417de9120e07d18102edcacfb0482e0321d8bc7d1802d",
+        "recordCount": 300
+      }
+    ],
+    "totalRawRecords": 300,
+    "uniqueNormalizedUrls": 300,
+    "uniqueRegistrableDomains": 120,
+    "duplicateUrlOccurrences": 0,
+    "invalidRecords": 0,
+    "deduplicationRule": "A URL that reappears in later snapshots is counted once. Domain-level counts collapse all URLs that share a registrable domain."
+  },
+  "sampling": {
+    "benign": {
+      "label": "BENIGN",
+      "target": 20000,
+      "method": "fixed_seed_sample_of_the_cleaned_view",
+      "availableSourceDistribution": {
+        "commoncrawl_tranco_candidate": 6,
+        "tranco": 39964
+      },
+      "sampledSourceDistribution": {
+        "commoncrawl_tranco_candidate": 1,
+        "tranco": 19999
+      },
+      "syntheticRowsCreated": 0,
+      "duplicateRowsCreated": 0
+    },
+    "phishing": {
+      "label": "PHISHING",
+      "target": 20000,
+      "perSourceCap": 10000,
+      "maxSourceShare": 0.5,
+      "seed": 42,
+      "sampledSourceDistribution": {
+        "cert_polska": 10000,
+        "openphish": 106,
+        "phishing_database": 9894
+      },
+      "sampledShare": {
+        "cert_polska": 0.5,
+        "openphish": 0.0053,
+        "phishing_database": 0.4947
+      },
+      "availableSourceDistribution": {
+        "cert_polska": 35661,
+        "openphish": 106,
+        "phishing_database": 19126
+      },
+      "syntheticRowsCreated": 0,
+      "duplicateRowsCreated": 0,
+      "method": "deterministic_equal_cap_then_redistribute"
+    }
+  },
+  "viewDistribution": {
+    "BENIGN": 20000,
+    "PHISHING": 20000
+  },
+  "viewSourceDistribution": {
+    "cert_polska": 10000,
+    "commoncrawl_tranco_candidate": 1,
+    "openphish": 106,
+    "phishing_database": 9894,
+    "tranco": 19999
+  },
+  "splits": {
+    "trainSize": 28000,
+    "validationSize": 6000,
+    "testSize": 6000,
+    "trainDistribution": {
+      "BENIGN": 14011,
+      "PHISHING": 13989
+    },
+    "validationDistribution": {
+      "BENIGN": 2997,
+      "PHISHING": 3003
+    },
+    "testDistribution": {
+      "BENIGN": 2992,
+      "PHISHING": 3008
+    },
+    "trainSourceDistribution": {
+      "cert_polska": 7011,
+      "commoncrawl_tranco_candidate": 1,
+      "openphish": 76,
+      "phishing_database": 6902,
+      "tranco": 14010
+    },
+    "testSourceDistribution": {
+      "cert_polska": 1494,
+      "openphish": 16,
+      "phishing_database": 1498,
+      "tranco": 2992
+    },
+    "uniqueDomains": {
+      "train": 28000,
+      "validation": 6000,
+      "test": 6000
+    },
+    "domainLeakage": 0
+  },
+  "splitSeed": 42,
+  "splitMethod": "registrable_domain_group_split",
+  "testManifest": {
+    "manifestSchemaVersion": 2,
+    "datasetVersion": "dataset-v1.3.0",
+    "combinedTestSetSha256": "3e642bd3570b0eb4d629d916e48ca959a2266e8df0d13e8819efec9920758491",
+    "domainAssignmentSha256": "60b5a99ca0a700d313af7890b8235dad0bc231f85bbcbd75f2d2cdd0ee0da3bc",
+    "splitSeed": 42,
+    "views": {
+      "binary": {
+        "sha256": "379c753e8744e9906c68b0bac69ab69525abc27c1bf6de2ff8eecdef5a97fdea",
+        "record_count": 6000,
+        "domain_count": 6000,
+        "file": "binary/test.csv"
+      }
+    },
+    "labelSpace": {
+      "BENIGN": 0,
+      "PHISHING": 1
+    },
+    "label": "binary phishing frozen test",
+    "creationTime": "2026-09-20T04:43:01+00:00"
+  },
+  "testManifestSHA256": "bf640e52884a4b86d5edd6af25f686df3bc6534a181756161caf9c2721f84460",
+  "snapshots": [
+    {
+      "snapshot_id": "snapshot-2026-09-20",
+      "download_time": "2026-09-20T01:39:11+00:00",
+      "sources": [
+        {
+          "source": "cert_polska",
+          "source_version": null,
+          "file": "cert_polska/domains.json",
+          "sha256": "e7a9f069a0af568a3a71366203c2e54d35be05d78fa65015920b3c0b28ffb58e",
+          "file_size": 23564279,
+          "record_count": 132974,
+          "acquired_at": "2026-09-20T02:54:49+00:00",
+          "official_endpoint": "https://hole.cert.pl/domains/v2/domains.json"
+        },
+        {
+          "source": "commoncrawl",
+          "source_version": "CC-MAIN-2026-39",
+          "file": "commoncrawl/commoncrawl_candidates.jsonl",
+          "sha256": "988776fd45d47117ac30613c5d604e8f894ce4e3d9013867465645bb258b02ac",
+          "file_size": 3970,
+          "record_count": 7
+        },
+        {
+          "source": "openphish",
+          "source_version": null,
+          "file": "openphish/openphish-community.txt",
+          "sha256": "4a69e59ce027acd328f417de9120e07d18102edcacfb0482e0321d8bc7d1802d",
+          "file_size": 14950,
+          "record_count": 300,
+          "acquired_at": "2026-09-20T02:54:37+00:00",
+          "official_endpoint": "https://raw.githubusercontent.com/openphish/public_feed/refs/heads/main/feed.txt"
+        },
+        {
+          "source": "phishing_database",
+          "source_version": null,
+          "file": "phishing_database/phishing-domains-ACTIVE.txt",
+          "sha256": "0733d7f843867cfdf68b13631a15bced25be58eeea5b6f853e34ad1ac3eacefc",
+          "file_size": 11019369,
+          "record_count": 391977,
+          "acquired_at": "2026-09-20T04:40:29+00:00",
+          "official_endpoint": "https://phish.co.za/latest/phishing-domains-ACTIVE.txt"
+        },
+        {
+          "source": "threatfox",
+          "source_version": "get_iocs_days_7",
+          "file": "threatfox/threatfox_iocs.json",
+          "sha256": "8a3abb1f60c12f07f43b7094ca41087413f772bdd07f9dcb42202aaf11e989b5",
+          "file_size": 6995635,
+          "record_count": 2642,
+          "acquired_at": "2026-09-20T04:06:11+00:00"
+        },
+        {
+          "source": "tranco",
+          "source_version": "PY96J",
+          "file": "tranco/tranco.csv.zip",
+          "sha256": "a29161788fe33b216d59692f8b050d169ab2ea1dacc9281ecb2b9ba2fd2b5da3",
+          "file_size": 9726076,
+          "record_count": 1000000,
+          "official_endpoint": "https://tranco-list.eu/top-1m.csv.zip"
+        },
+        {
+          "source": "urlhaus",
+          "source_version": null,
+          "file": "urlhaus/recent.csv",
+          "sha256": "be7a0fea31cde92708c956b5c7d81da99448c7b35b38da9b741678df0d143534",
+          "file_size": 2422373,
+          "record_count": 12757,
+          "acquired_at": "2026-09-20T02:57:00+00:00",
+          "official_endpoint": "https://urlhaus-api.abuse.ch/v2/files/exports/[REDACTED]/recent.csv"
+        }
+      ]
+    }
+  ],
+  "sourcePolicyVersion": "2026-09-20-openphish-certpl-urlhaus-v1",
+  "probabilityStatus": "UNCALIBRATED PROBABILITY",
+  "notes": "Phishing.Database and other community feeds may contain false positives; records are treated as community reports, not ground truth, and are audited for cross-source conflicts.",
+  "publicCopyNote": "Absolute local paths were replaced with repository-relative paths for the public copy; no counts, hashes or labels were changed."
+}

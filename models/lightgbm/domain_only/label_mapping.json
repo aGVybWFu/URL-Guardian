@@ -1,0 +1,5 @@
+{
+  "BENIGN": 0,
+  "PHISHING": 1,
+  "MALWARE": 2
+}

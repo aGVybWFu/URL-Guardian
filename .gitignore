@@ -1,0 +1,58 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.coverage
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs / temporary
+logs/
+tmp/
+*.log
+
+# Android / Gradle
+.gradle/
+android/.gradle/
+android/.kotlin/
+android/**/build/
+local.properties
+
+# Signing material must never be committed
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+signing.properties
+release-signing.properties
+production-signing.properties
+.urlguardian/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local pipeline output (datasets are not redistributed in this repository)
+data/raw/
+data/interim/
+data/splits/
+data/processed/views/
+data/processed/ugdm-v1.0.0/*.csv
+data/processed/ugdm-v1.0.0/ugdm_dataset_metadata.json
+data/processed/ugdm-v1.0.0/oof/
+data/processed/*.csv
+data/processed/*/*.csv
+data/processed/*/*/*.csv
+reports/

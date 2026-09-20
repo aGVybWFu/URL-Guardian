@@ -1,0 +1,974 @@
+{
+  "metadataSchemaVersion": 1,
+  "modelName": "ugdm",
+  "modelVersion": "0.7.0",
+  "variant": "full",
+  "architectureVersion": "UGDM-v1",
+  "featureSchemaVersion": 1,
+  "outputSchemaVersion": 1,
+  "datasetVersion": "dataset-v1.3.0",
+  "ugdmDatasetVersion": "ugdm-dataset-v1.0.0",
+  "testManifestSHA256": "bf640e52884a4b86d5edd6af25f686df3bc6534a181756161caf9c2721f84460",
+  "testSetSHA256": "379c753e8744e9906c68b0bac69ab69525abc27c1bf6de2ff8eecdef5a97fdea",
+  "threatIntelSnapshot": {
+    "file": "data/processed/ugdm-v1.0.0/threat_intel_snapshot.json",
+    "sha256": "c1007b9b9c8e2f4b7ead01822a2c297aead232c3534fbd68d6fb5f52d53d70fe",
+    "indicatorCount": 7833,
+    "providerStatus": {
+      "URLHAUS": "AVAILABLE",
+      "THREATFOX": "AVAILABLE"
+    }
+  },
+  "urlbertArtifactVersion": "URLBERT_PHISHING_BINARY_V1",
+  "urlbertRevision": "020744435b3be870dabb2bba0b41237bea69b84b",
+  "probabilityInputPolicy": {
+    "chosenVersion": "uncalibrated",
+    "chosenOn": "validation",
+    "validationMetrics": {
+      "ece": 0.02901287860999996,
+      "brier": 0.33681967310437577,
+      "nll": 0.5100545634202398
+    },
+    "alternativeVersion": "calibrated",
+    "alternativeValidationMetrics": {
+      "ece": 0.03140436272669142,
+      "brier": 0.3366109760865978,
+      "nll": 0.507766890371146
+    },
+    "selectionRule": "Chosen on Validation only by lowest expected calibration error, then lowest Brier score, then lowest NLL. The Test Set never participates."
+  },
+  "oofStrategy": "dataset-v1.3.0 frozen splits, reused unchanged; no re-split was performed",
+  "policyVersion": "DecisionPolicyV1",
+  "costFunctionVersion": "DecisionCostV1",
+  "policyThresholds": {
+    "reviewAt": 0.35,
+    "blockAt": 0.85
+  },
+  "normalizer": {
+    "fittedOn": "train",
+    "method": "zscore",
+    "features": [
+      "url_length",
+      "hostname_length",
+      "subdomain_count",
+      "hostname_entropy",
+      "redirect_count"
+    ],
+    "mean": {
+      "url_length": 24.005535714285713,
+      "hostname_length": 15.005535714285715,
+      "subdomain_count": 0.0,
+      "hostname_entropy": 3.314790400625274,
+      "redirect_count": 0.0
+    },
+    "std": {
+      "url_length": 5.119619621627477,
+      "hostname_length": 5.119619621627476,
+      "subdomain_count": 1.0,
+      "hostname_entropy": 0.3516774839451298,
+      "redirect_count": 1.0
+    }
+  },
+  "featureSchema": {
+    "schemaVersion": 1,
+    "featureCount": 31,
+    "availabilityMaskDimension": 31,
+    "modelInputDimension": 62,
+    "features": [
+      {
+        "name": "phishing_probability",
+        "group": "urlbert",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "URLBERT_PHISHING_BINARY_V1 softmax output",
+        "notes": "Selected probability version is recorded in metadata."
+      },
+      {
+        "name": "benign_probability",
+        "group": "urlbert",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "URLBERT_PHISHING_BINARY_V1 softmax output",
+        "notes": "Complement of the phishing probability."
+      },
+      {
+        "name": "known_malicious",
+        "group": "threat_intelligence",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "CONDITIONAL",
+        "source": "ThreatIntelligenceService merged status",
+        "notes": "1 only for a confirmed KNOWN_MALICIOUS match. UNKNOWN is never encoded as safe."
+      },
+      {
+        "name": "urlhaus_hit",
+        "group": "threat_intelligence",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "CONDITIONAL",
+        "source": "UrlHausProvider",
+        "notes": "Per-provider evidence flag."
+      },
+      {
+        "name": "threatfox_hit",
+        "group": "threat_intelligence",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "CONDITIONAL",
+        "source": "ThreatFoxProvider",
+        "notes": "Per-provider evidence flag."
+      },
+      {
+        "name": "url_length",
+        "group": "url_structure",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          4096.0
+        ],
+        "normalization": "zscore",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "hostname_length",
+        "group": "url_structure",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          253.0
+        ],
+        "normalization": "zscore",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "subdomain_count",
+        "group": "url_structure",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          32.0
+        ],
+        "normalization": "zscore",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "digit_ratio",
+        "group": "url_structure",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "special_character_ratio",
+        "group": "url_structure",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "hostname_entropy",
+        "group": "url_structure",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          8.0
+        ],
+        "normalization": "zscore",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "has_ip",
+        "group": "rules",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "has_punycode",
+        "group": "rules",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "has_at_symbol",
+        "group": "rules",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "uses_https",
+        "group": "rules",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "has_non_default_port",
+        "group": "rules",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "contains_login",
+        "group": "keywords",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "contains_verify",
+        "group": "keywords",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "contains_secure",
+        "group": "keywords",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "contains_account",
+        "group": "keywords",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "contains_password",
+        "group": "keywords",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "contains_payment",
+        "group": "keywords",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "contains_wallet",
+        "group": "keywords",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "ALWAYS",
+        "source": "src.features.extractor",
+        "notes": ""
+      },
+      {
+        "name": "brand_detected",
+        "group": "brand",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "Placeholder. Availability is 0 until a brand detector exists."
+      },
+      {
+        "name": "brand_domain_mismatch",
+        "group": "brand",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "Placeholder. Availability is 0 until a brand detector exists."
+      },
+      {
+        "name": "brand_risk_score",
+        "group": "brand",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "Placeholder. Availability is 0 until a brand detector exists."
+      },
+      {
+        "name": "redirect_count",
+        "group": "redirect",
+        "dtype": "float",
+        "expectedRange": [
+          0.0,
+          32.0
+        ],
+        "normalization": "zscore",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "Requires observing the redirect chain, which static URL analysis cannot do."
+      },
+      {
+        "name": "cross_domain_redirect",
+        "group": "redirect",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "Requires observing the redirect chain."
+      },
+      {
+        "name": "shortener_detected",
+        "group": "redirect",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "Requires a maintained shortener list; none is approved yet."
+      },
+      {
+        "name": "blacklist_hit",
+        "group": "local",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "No approved on-device blacklist exists yet."
+      },
+      {
+        "name": "whitelist_hit",
+        "group": "local",
+        "dtype": "bool",
+        "expectedRange": [
+          0.0,
+          1.0
+        ],
+        "normalization": "identity",
+        "availability": "NOT_IMPLEMENTED",
+        "source": "not implemented",
+        "notes": "No approved on-device whitelist exists yet."
+      }
+    ],
+    "missingnessContract": "Values and availability are separate vectors. A feature with availability 0 must be ignored by the model; its value carries no meaning and is never interpreted as safe."
+  },
+  "architecture": {
+    "architectureVersion": "UGDM-v1",
+    "featureSchemaVersion": 1,
+    "outputSchemaVersion": 1,
+    "featureCount": 31,
+    "availabilityMaskDimension": 31,
+    "inputDimension": 62,
+    "hiddenSizes": [
+      128,
+      128,
+      64
+    ],
+    "dropout": 0.1,
+    "heads": {
+      "risk": 3,
+      "action": 3,
+      "threat": 4
+    },
+    "parameterCount": 33482,
+    "underParameterTarget": true
+  },
+  "parameterCount": 33482,
+  "randomSeed": 42,
+  "optimizer": "AdamW",
+  "learningRate": 0.001,
+  "weightDecay": 0.0001,
+  "batchSize": 512,
+  "epochs": 50,
+  "bestEpoch": 3,
+  "trainingTimeSeconds": 8.737,
+  "targetProvenance": {
+    "threat": "SUPERVISED_FROM_DATASET_LABEL",
+    "risk": "POLICY_SUPERVISED",
+    "action": "POLICY_SUPERVISED",
+    "note": "Risk and Action targets are produced by DecisionPolicyV1 from runtime-available evidence. They are POLICY_SUPERVISED, not HUMAN_GROUND_TRUTH."
+  },
+  "riskActionProvenance": "POLICY_SUPERVISED",
+  "threatTargetClassesSupported": [
+    "BENIGN",
+    "PHISHING"
+  ],
+  "unsupportedThreatClasses": {
+    "KNOWN_MALWARE": "INSUFFICIENT_TRAINING_DATA: no row in dataset-v1.3.0 carries confirmed malware evidence",
+    "OTHER": "INSUFFICIENT_TRAINING_DATA: no reliable supervised source exists"
+  },
+  "probabilityStatus": "UNCALIBRATED",
+  "libraryVersions": {
+    "python": "3.11.9",
+    "torch": "2.14.0+cu126",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6"
+  },
+  "metrics": {
+    "variant": "full",
+    "excludedFeatures": [],
+    "bestEpoch": 3,
+    "epochsCompleted": 11,
+    "validation": {
+      "operational": {
+        "phishingBlockRecall": 0.0,
+        "phishingReviewRate": 0.8464868464868465,
+        "phishingAllowRate": 0.1535131535131535,
+        "benignBlockRate": 0.0,
+        "benignReviewRate": 0.4100767434100767,
+        "benignAllowRate": 0.5899232565899233,
+        "overallReviewRate": 0.6285,
+        "overallBlockRate": 0.0,
+        "expectedDecisionCost": 0.8781988848656578,
+        "costVersion": "DecisionCostV1",
+        "deploymentPrevalence": 0.02,
+        "thresholdsApplied": 0.5
+      },
+      "risk": {
+        "macroF1": 0.6488317581247142,
+        "accuracy": 0.9673333333333334,
+        "perClass": {
+          "SAFE": {
+            "precision": 0.9955456570155902,
+            "recall": 0.9518739352640545,
+            "f1-score": 0.9732201175702155,
+            "support": 2348.0
+          },
+          "SUSPICIOUS": {
+            "precision": 0.9504660452729694,
+            "recall": 0.9972059234423023,
+            "f1-score": 0.973275156803927,
+            "support": 3579.0
+          },
+          "DANGEROUS": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 73.0
+          }
+        },
+        "confusionMatrix": [
+          [
+            2235,
+            113,
+            0
+          ],
+          [
+            10,
+            3569,
+            0
+          ],
+          [
+            0,
+            73,
+            0
+          ]
+        ],
+        "classNames": [
+          "SAFE",
+          "SUSPICIOUS",
+          "DANGEROUS"
+        ]
+      },
+      "action": {
+        "macroF1": 0.64716543379423,
+        "accuracy": 0.965,
+        "perClass": {
+          "SAFE": {
+            "precision": 0.9959623149394348,
+            "recall": 0.9454855195911414,
+            "f1-score": 0.9700677299541184,
+            "support": 2348.0
+          },
+          "SUSPICIOUS": {
+            "precision": 0.9466984884645983,
+            "recall": 0.9974853310980721,
+            "f1-score": 0.9714285714285714,
+            "support": 3579.0
+          },
+          "DANGEROUS": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 73.0
+          }
+        },
+        "confusionMatrix": [
+          [
+            2220,
+            128,
+            0
+          ],
+          [
+            9,
+            3570,
+            0
+          ],
+          [
+            0,
+            73,
+            0
+          ]
+        ],
+        "classNames": [
+          "SAFE",
+          "SUSPICIOUS",
+          "DANGEROUS"
+        ]
+      },
+      "threat": {
+        "macroF1": 0.37238192264510683,
+        "accuracy": 0.7448333333333333,
+        "perClass": {
+          "BENIGN": {
+            "precision": 0.7524104683195593,
+            "recall": 0.7290623957290624,
+            "f1-score": 0.7405524487375021,
+            "support": 2997.0
+          },
+          "PHISHING": {
+            "precision": 0.7377260981912145,
+            "recall": 0.7605727605727606,
+            "f1-score": 0.7489752418429251,
+            "support": 3003.0
+          },
+          "KNOWN_MALWARE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 0.0
+          },
+          "OTHER": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 0.0
+          }
+        },
+        "confusionMatrix": [
+          [
+            2185,
+            812,
+            0,
+            0
+          ],
+          [
+            719,
+            2284,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "classNames": [
+          "BENIGN",
+          "PHISHING",
+          "KNOWN_MALWARE",
+          "OTHER"
+        ]
+      }
+    },
+    "test": {
+      "operational": {
+        "phishingBlockRecall": 0.0,
+        "phishingReviewRate": 0.8577127659574468,
+        "phishingAllowRate": 0.1422872340425532,
+        "benignBlockRate": 0.0,
+        "benignReviewRate": 0.42045454545454547,
+        "benignAllowRate": 0.5795454545454546,
+        "overallReviewRate": 0.6396666666666667,
+        "overallBlockRate": 0.0,
+        "expectedDecisionCost": 0.8681624758220536,
+        "costVersion": "DecisionCostV1",
+        "deploymentPrevalence": 0.02,
+        "thresholdsApplied": 0.5
+      },
+      "risk": {
+        "macroF1": 0.6508962621314307,
+        "accuracy": 0.9691666666666666,
+        "perClass": {
+          "SAFE": {
+            "precision": 0.9953895804518211,
+            "recall": 0.9599822143174744,
+            "f1-score": 0.9773653236758715,
+            "support": 2249.0
+          },
+          "SUSPICIOUS": {
+            "precision": 0.9543200208822762,
+            "recall": 0.9972722313147845,
+            "f1-score": 0.9753234627184207,
+            "support": 3666.0
+          },
+          "DANGEROUS": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 85.0
+          }
+        },
+        "confusionMatrix": [
+          [
+            2159,
+            90,
+            0
+          ],
+          [
+            10,
+            3656,
+            0
+          ],
+          [
+            0,
+            85,
+            0
+          ]
+        ],
+        "classNames": [
+          "SAFE",
+          "SUSPICIOUS",
+          "DANGEROUS"
+        ]
+      },
+      "action": {
+        "macroF1": 0.6502920148423926,
+        "accuracy": 0.9683333333333334,
+        "perClass": {
+          "SAFE": {
+            "precision": 0.9958371877890841,
+            "recall": 0.9573143619386394,
+            "f1-score": 0.9761958739514849,
+            "support": 2249.0
+          },
+          "SUSPICIOUS": {
+            "precision": 0.9528400208441897,
+            "recall": 0.997545008183306,
+            "f1-score": 0.974680170575693,
+            "support": 3666.0
+          },
+          "DANGEROUS": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 85.0
+          }
+        },
+        "confusionMatrix": [
+          [
+            2153,
+            96,
+            0
+          ],
+          [
+            9,
+            3657,
+            0
+          ],
+          [
+            0,
+            85,
+            0
+          ]
+        ],
+        "classNames": [
+          "SAFE",
+          "SUSPICIOUS",
+          "DANGEROUS"
+        ]
+      },
+      "threat": {
+        "macroF1": 0.3720795780178142,
+        "accuracy": 0.7445,
+        "perClass": {
+          "BENIGN": {
+            "precision": 0.7615632843313015,
+            "recall": 0.7098930481283422,
+            "f1-score": 0.7348209652309289,
+            "support": 2992.0
+          },
+          "PHISHING": {
+            "precision": 0.7296792276549362,
+            "recall": 0.7789228723404256,
+            "f1-score": 0.753497346840328,
+            "support": 3008.0
+          },
+          "KNOWN_MALWARE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 0.0
+          },
+          "OTHER": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 0.0
+          }
+        },
+        "confusionMatrix": [
+          [
+            2124,
+            868,
+            0,
+            0
+          ],
+          [
+            665,
+            2343,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "classNames": [
+          "BENIGN",
+          "PHISHING",
+          "KNOWN_MALWARE",
+          "OTHER"
+        ]
+      }
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "trainLoss": 3.8438439235687256,
+        "validationExpectedCost": 1.175720982387807,
+        "validationRiskMacroF1": 0.47419747323644224,
+        "validationActionMacroF1": 0.4751640465159636,
+        "validationThreatMacroF1": 0.31542254090261307
+      },
+      {
+        "epoch": 2,
+        "trainLoss": 2.903718227318355,
+        "validationExpectedCost": 0.9403480336814933,
+        "validationRiskMacroF1": 0.5678744401905856,
+        "validationActionMacroF1": 0.5696216819152345,
+        "validationThreatMacroF1": 0.37327397086371317
+      },
+      {
+        "epoch": 3,
+        "trainLoss": 2.8548894293648854,
+        "validationExpectedCost": 0.8781988848656578,
+        "validationRiskMacroF1": 0.6488317581247142,
+        "validationActionMacroF1": 0.64716543379423,
+        "validationThreatMacroF1": 0.37238192264510683
+      },
+      {
+        "epoch": 4,
+        "trainLoss": 2.1457118208748955,
+        "validationExpectedCost": 0.8808625741960157,
+        "validationRiskMacroF1": 0.6498837896417018,
+        "validationActionMacroF1": 0.650347297194764,
+        "validationThreatMacroF1": 0.3749448506791495
+      },
+      {
+        "epoch": 5,
+        "trainLoss": 2.1173603400843484,
+        "validationExpectedCost": 0.8825516025517114,
+        "validationRiskMacroF1": 0.649306627379449,
+        "validationActionMacroF1": 0.649537233754098,
+        "validationThreatMacroF1": 0.3754891720196732
+      },
+      {
+        "epoch": 6,
+        "trainLoss": 2.123971968650818,
+        "validationExpectedCost": 0.8848882982217416,
+        "validationRiskMacroF1": 0.6271254128050583,
+        "validationActionMacroF1": 0.6274652095928898,
+        "validationThreatMacroF1": 0.3740097145449166
+      },
+      {
+        "epoch": 7,
+        "trainLoss": 2.001668004138129,
+        "validationExpectedCost": 0.8823862623863711,
+        "validationRiskMacroF1": 0.6453905614577401,
+        "validationActionMacroF1": 0.6446998596101937,
+        "validationThreatMacroF1": 0.3747309866716607
+      },
+      {
+        "epoch": 8,
+        "trainLoss": 2.156417184455054,
+        "validationExpectedCost": 0.8829316029317122,
+        "validationRiskMacroF1": 0.6463122655203417,
+        "validationActionMacroF1": 0.6461970041497643,
+        "validationThreatMacroF1": 0.37473115206253704
+      },
+      {
+        "epoch": 9,
+        "trainLoss": 1.284265512091773,
+        "validationExpectedCost": 0.8793846193847262,
+        "validationRiskMacroF1": 0.6620227385618428,
+        "validationActionMacroF1": 0.6620227385618428,
+        "validationThreatMacroF1": 0.37460942841864947
+      },
+      {
+        "epoch": 10,
+        "trainLoss": 1.5898239664690834,
+        "validationExpectedCost": 0.9039830173164631,
+        "validationRiskMacroF1": 0.7460595067940307,
+        "validationActionMacroF1": 0.7492378280918003,
+        "validationThreatMacroF1": 0.37497452991799446
+      },
+      {
+        "epoch": 11,
+        "trainLoss": 0.9089178470884051,
+        "validationExpectedCost": 0.9007081273749055,
+        "validationRiskMacroF1": 0.7908538802032629,
+        "validationActionMacroF1": 0.7897497118344505,
+        "validationThreatMacroF1": 0.3746950355621058
+      }
+    ]
+  },
+  "trainedAt": "2026-09-20T05:18:00+00:00",
+  "modelSHA256": "0aa160cd20581dc0f80b63a9a0dd723665b05f0704ff7b7a9044e450caa6fc71"
+}

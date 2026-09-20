@@ -1,0 +1,9 @@
+{
+  "policyVersion": "DecisionPolicyV1",
+  "costVersion": "DecisionCostV1",
+  "reviewAt": 0.35,
+  "blockAt": 0.85,
+  "probabilityVersion": "uncalibrated",
+  "knownMaliciousGuardrail": "always_block",
+  "ugdmEnabled": false
+}

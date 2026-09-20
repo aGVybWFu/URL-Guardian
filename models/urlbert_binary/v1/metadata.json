@@ -1,0 +1,347 @@
+{
+  "metadataSchemaVersion": 1,
+  "experimentType": "OFFICIAL_EXPERIMENT",
+  "modelName": "url_guardian_urlbert_binary",
+  "modelVersion": "0.6.0",
+  "experimentId": "URLBERT_PHISHING_BINARY_V1",
+  "baseModel": "CrabInHoney/urlbert-tiny-v6",
+  "baseModelRevision": "020744435b3be870dabb2bba0b41237bea69b84b",
+  "baseModelArchitecture": "ModernBertModel",
+  "baseModelParams": 2033408,
+  "totalParams": 2099714,
+  "trainableParams": 2099714,
+  "datasetVersion": "dataset-v1.3.0",
+  "datasetView": "domain_only",
+  "featureRepresentation": "DOMAIN_ONLY registrable-domain text (registrable_domain)",
+  "textColumn": "registrable_domain",
+  "testManifestSHA256": "bf640e52884a4b86d5edd6af25f686df3bc6534a181756161caf9c2721f84460",
+  "testSetSHA256": null,
+  "labelMapping": {
+    "BENIGN": 0,
+    "PHISHING": 1
+  },
+  "randomSeed": 42,
+  "deterministicSettings": {
+    "pythonRandom": true,
+    "numpy": true,
+    "torch": true,
+    "cudaManualSeed": true,
+    "deterministicAlgorithms": "warn_only",
+    "cudnnDeterministic": true
+  },
+  "determinismNotes": "Seeds are fixed for Python, NumPy, PyTorch and CUDA, cudnn is set to deterministic mode, and torch.use_deterministic_algorithms uses warn_only. CUDA attention backward kernels and GPU reduction order are still not guaranteed to be bitwise reproducible across runs or hardware.",
+  "classWeights": {
+    "BENIGN": 0.999214902576547,
+    "PHISHING": 1.0007863321180928
+  },
+  "numClasses": 2,
+  "classWeightSource": "train split class distribution only",
+  "lossFunction": "weighted cross entropy",
+  "tokenizer": {
+    "name": "CrabInHoney/urlbert-tiny-v6",
+    "revision": "020744435b3be870dabb2bba0b41237bea69b84b",
+    "class": "TokenizersBackend",
+    "vocabSize": 8192,
+    "specialTokens": {
+      "unk_token": "[UNK]",
+      "sep_token": "[SEP]",
+      "pad_token": "[PAD]",
+      "cls_token": "[CLS]",
+      "mask_token": "[MASK]"
+    }
+  },
+  "maxLength": 32,
+  "pooling": "cls_mean",
+  "headHiddenSize": 256,
+  "headDropout": 0.1,
+  "epochs": 5,
+  "epochsCompleted": 5,
+  "batchSize": 512,
+  "batchSizeSelection": "largest VRAM-fitting candidate that keeps at least 40 optimizer steps per epoch",
+  "optimizerStepsPerEpoch": 55,
+  "gradientAccumulationSteps": 1,
+  "learningRate": 2e-05,
+  "optimizer": "AdamW",
+  "scheduler": "linear warmup (0.1) + linear decay",
+  "weightDecay": 0.01,
+  "maxGradNorm": 1.0,
+  "mixedPrecision": "torch.bfloat16",
+  "libraryVersions": {
+    "python": "3.11.9",
+    "torch": "2.14.0+cu126",
+    "transformers": "5.17.0",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1"
+  },
+  "gpu": {
+    "device": "cuda",
+    "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "vramBytes": 8585216000,
+    "vramGb": 8.0,
+    "cudaVersion": "12.6",
+    "torchVersion": "2.14.0+cu126",
+    "computeCapability": "8.9"
+  },
+  "trainingTimeSeconds": 14.221,
+  "peakVramBytes": 583597056,
+  "bestValidationEpoch": 4,
+  "bestValidationMacroF1": 0.7495723571672939,
+  "bestValidationSelectionMetric": "phishing_f1",
+  "trainCount": 28000,
+  "validationCount": 6000,
+  "testCount": 0,
+  "datasetContract": {
+    "datasetVersion": "dataset-v1.3.0",
+    "datasetView": "domain_only",
+    "textColumn": "registrable_domain",
+    "splits": {
+      "test": {
+        "rowCount": 6000,
+        "uniqueDomains": 6000,
+        "labelDistribution": {
+          "BENIGN": 2992,
+          "PHISHING": 3008
+        },
+        "textSha256": "117c2d5f03583a0ef286505c72ca505220a94bb0d427dc0886329ca7f5b3422d"
+      },
+      "train": {
+        "rowCount": 28000,
+        "uniqueDomains": 28000,
+        "labelDistribution": {
+          "BENIGN": 14011,
+          "PHISHING": 13989
+        },
+        "textSha256": "546ebb4589319ca4fb22f98dc793593512cf632ef79b0d2708ceadb72a108de3"
+      },
+      "validation": {
+        "rowCount": 6000,
+        "uniqueDomains": 6000,
+        "labelDistribution": {
+          "BENIGN": 2997,
+          "PHISHING": 3003
+        },
+        "textSha256": "3a57cf357e9d104eb8462865cc7b116d2715f8244a84fc0c61ee35203d87aaa4"
+      }
+    },
+    "domainLeakage": 0
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "trainLoss": 0.6807732384545463,
+      "validationLoss": 0.6440901707013448,
+      "validationAccuracy": 0.726,
+      "validationPrecision": 0.7343911693687478,
+      "validationRecall": 0.7089577089577089,
+      "validationF1": 0.7214503558115893,
+      "validationSpecificity": 0.7430764097430764,
+      "validationFalsePositiveRate": 0.2569235902569236,
+      "validationFalseNegativeRate": 0.29104229104229107,
+      "validationAuroc": 0.7877771211104543,
+      "validationAuprc": 0.7889018630916211,
+      "validationPerClassRecall": {
+        "BENIGN": 0.7430764097430764,
+        "PHISHING": 0.7089577089577089
+      },
+      "selectionMetric": "phishing_f1",
+      "selectionValue": 0.7214503558115893
+    },
+    {
+      "epoch": 2,
+      "trainLoss": 0.5783182601928711,
+      "validationLoss": 0.5314386394818624,
+      "validationAccuracy": 0.745,
+      "validationPrecision": 0.768893756845564,
+      "validationRecall": 0.7012987012987013,
+      "validationF1": 0.7335423197492164,
+      "validationSpecificity": 0.7887887887887888,
+      "validationFalsePositiveRate": 0.21121121121121122,
+      "validationFalseNegativeRate": 0.2987012987012987,
+      "validationAuroc": 0.8154507598952043,
+      "validationAuprc": 0.8231100381941404,
+      "validationPerClassRecall": {
+        "BENIGN": 0.7887887887887888,
+        "PHISHING": 0.7012987012987013
+      },
+      "selectionMetric": "phishing_f1",
+      "selectionValue": 0.7335423197492164
+    },
+    {
+      "epoch": 3,
+      "trainLoss": 0.5171724744524274,
+      "validationLoss": 0.5089369311332702,
+      "validationAccuracy": 0.7498333333333334,
+      "validationPrecision": 0.7666903409090909,
+      "validationRecall": 0.7189477189477189,
+      "validationF1": 0.7420518989517099,
+      "validationSpecificity": 0.7807807807807807,
+      "validationFalsePositiveRate": 0.21921921921921922,
+      "validationFalseNegativeRate": 0.281052281052281,
+      "validationAuroc": 0.8292812737257182,
+      "validationAuprc": 0.8412524703832961,
+      "validationPerClassRecall": {
+        "BENIGN": 0.7807807807807807,
+        "PHISHING": 0.7189477189477189
+      },
+      "selectionMetric": "phishing_f1",
+      "selectionValue": 0.7420518989517099
+    },
+    {
+      "epoch": 4,
+      "trainLoss": 0.49920043652398244,
+      "validationLoss": 0.5013412276903788,
+      "validationAccuracy": 0.756,
+      "validationPrecision": 0.7706647907140345,
+      "validationRecall": 0.7296037296037297,
+      "validationF1": 0.7495723571672939,
+      "validationSpecificity": 0.7824491157824491,
+      "validationFalsePositiveRate": 0.2175508842175509,
+      "validationFalseNegativeRate": 0.2703962703962704,
+      "validationAuroc": 0.8339337783782228,
+      "validationAuprc": 0.8476589005178807,
+      "validationPerClassRecall": {
+        "BENIGN": 0.7824491157824491,
+        "PHISHING": 0.7296037296037297
+      },
+      "selectionMetric": "phishing_f1",
+      "selectionValue": 0.7495723571672939
+    },
+    {
+      "epoch": 5,
+      "trainLoss": 0.49252469423839024,
+      "validationLoss": 0.49839005708694456,
+      "validationAccuracy": 0.758,
+      "validationPrecision": 0.7825136612021858,
+      "validationRecall": 0.7152847152847153,
+      "validationF1": 0.7473903966597077,
+      "validationSpecificity": 0.8008008008008008,
+      "validationFalsePositiveRate": 0.1991991991991992,
+      "validationFalseNegativeRate": 0.28471528471528473,
+      "validationAuroc": 0.835200724089613,
+      "validationAuprc": 0.8490860982300821,
+      "validationPerClassRecall": {
+        "BENIGN": 0.8008008008008008,
+        "PHISHING": 0.7152847152847153
+      },
+      "selectionMetric": "phishing_f1",
+      "selectionValue": 0.7473903966597077
+    }
+  ],
+  "trainedAt": "2026-09-20T04:52:39+00:00",
+  "testMetrics": {
+    "accuracy": 0.7478333333333333,
+    "precision": 0.7653532126375577,
+    "recall": 0.7167553191489362,
+    "f1": 0.7402575107296138,
+    "specificity": 0.7790775401069518,
+    "false_positive_rate": 0.22092245989304812,
+    "false_negative_rate": 0.28324468085106386,
+    "balanced_accuracy": 0.747916429627944,
+    "truePositive": 2156,
+    "trueNegative": 2331,
+    "falsePositive": 661,
+    "falseNegative": 852,
+    "benignSupport": 2992,
+    "phishingSupport": 3008,
+    "per_class": {
+      "BENIGN": {
+        "precision": 0.7323279924599434,
+        "recall": 0.7790775401069518,
+        "f1-score": 0.7549797570850203,
+        "support": 2992.0
+      },
+      "PHISHING": {
+        "precision": 0.7653532126375577,
+        "recall": 0.7167553191489362,
+        "f1-score": 0.7402575107296138,
+        "support": 3008.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        2331,
+        661
+      ],
+      [
+        852,
+        2156
+      ]
+    ],
+    "auroc": 0.8299843465553534,
+    "auprc": 0.8408576028965171,
+    "datasetVersion": "dataset-v1.3.0",
+    "datasetView": "domain_only",
+    "task": "binary_phishing",
+    "testManifestSHA256": "bf640e52884a4b86d5edd6af25f686df3bc6534a181756161caf9c2721f84460",
+    "testSetSHA256": "379c753e8744e9906c68b0bac69ab69525abc27c1bf6de2ff8eecdef5a97fdea",
+    "rowCount": 6000,
+    "probabilityStatus": "UNCALIBRATED PROBABILITY",
+    "labelNames": [
+      "BENIGN",
+      "PHISHING"
+    ],
+    "modelVersion": "0.6.0"
+  },
+  "probabilityStatus": "UNCALIBRATED PROBABILITY",
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel"
+  },
+  "modelSHA256": "bcbe3857436c2140fdbc3a79f128c78e38151e68efe911170ffea4e8cea3f212",
+  "metrics": {
+    "test": {
+      "accuracy": 0.7478333333333333,
+      "precision": 0.7653532126375577,
+      "recall": 0.7167553191489362,
+      "f1": 0.7402575107296138,
+      "specificity": 0.7790775401069518,
+      "false_positive_rate": 0.22092245989304812,
+      "false_negative_rate": 0.28324468085106386,
+      "balanced_accuracy": 0.747916429627944,
+      "truePositive": 2156,
+      "trueNegative": 2331,
+      "falsePositive": 661,
+      "falseNegative": 852,
+      "benignSupport": 2992,
+      "phishingSupport": 3008,
+      "per_class": {
+        "BENIGN": {
+          "precision": 0.7323279924599434,
+          "recall": 0.7790775401069518,
+          "f1-score": 0.7549797570850203,
+          "support": 2992.0
+        },
+        "PHISHING": {
+          "precision": 0.7653532126375577,
+          "recall": 0.7167553191489362,
+          "f1-score": 0.7402575107296138,
+          "support": 3008.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          2331,
+          661
+        ],
+        [
+          852,
+          2156
+        ]
+      ],
+      "auroc": 0.8299843465553534,
+      "auprc": 0.8408576028965171
+    }
+  },
+  "modelSizeBytes": 8416421,
+  "evaluation": {
+    "evaluatedAt": "2026-09-20T04:52:58+00:00",
+    "latencyGpuMs": {
+      "averageMs": 3.0484774999058573,
+      "p50Ms": 2.98934999955236,
+      "p95Ms": 3.527854999992996
+    },
+    "peakVramBytes": 72121344,
+    "testRowCount": 6000,
+    "probabilityStatus": "UNCALIBRATED PROBABILITY"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "heads": {
+    "risk": {
+      "classes": [
+        "SAFE",
+        "SUSPICIOUS",
+        "DANGEROUS"
+      ],
+      "classCount": 3
+    },
+    "action": {
+      "classes": [
+        "ALLOW",
+        "REVIEW",
+        "BLOCK"
+      ],
+      "classCount": 3
+    },
+    "threat": {
+      "classes": [
+        "BENIGN",
+        "PHISHING",
+        "KNOWN_MALWARE",
+        "OTHER"
+      ],
+      "classCount": 4
+    }
+  },
+  "threatHeadRule": "KNOWN_MALWARE is supported by Threat Intelligence evidence. UGDM must not predict KNOWN_MALWARE for a domain that no intelligence source has recorded.",
+  "actionHeadRule": "The action head must not emit BLOCK without either a Threat Intelligence hit or a high-risk model decision with a documented threshold."
+}
